@@ -1,0 +1,13 @@
+<div class="col-sm-12 col-lg-6">
+  <mat-list>
+    <mat-list-item>
+      <mat-icon matListIcon *ngIf="icon">{{icon}}</mat-icon>
+      <h3 matLine> {{displayName}} </h3>
+      <p matLine>
+        <span class="text-muted" *ngIf="attrName">{{attrName}}</span>
+        <span *ngIf="yesNo"> -- {{value ? 'Yes' : 'No'}} </span>
+        <span *ngIf="!yesNo"> -- {{value}} </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+</div>

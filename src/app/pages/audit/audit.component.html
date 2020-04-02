@@ -1,0 +1,69 @@
+<!-- Page Content -->
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Audit Event List</h1>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-lg-12">
+        <mat-card>
+          <mat-card-title>
+            <span>Available Events</span>
+          </mat-card-title>
+          <mat-card-content>
+            <table mat-table [dataSource]="dataSource" class="main-table">
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID</th>
+                <td mat-cell *matCellDef="let element">
+                  <a href="#" (click)="showDetails(element)">{{element.id}}</a>
+                </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="eventName">
+                <th mat-header-cell *matHeaderCellDef> Event Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.eventName}}</td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="eventTime">
+                <th mat-header-cell *matHeaderCellDef> Event Time</th>
+                <td mat-cell *matCellDef="let element"> {{element.eventTime}}</td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="authType">
+                <th mat-header-cell *matHeaderCellDef> Auth Type</th>
+                <td mat-cell *matCellDef="let element"> {{element.authType}}</td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="principleName">
+                <th mat-header-cell *matHeaderCellDef> Principle Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.principleName}}</td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="principleType">
+                <th mat-header-cell *matHeaderCellDef> Principle Type</th>
+                <td mat-cell *matCellDef="let element"> {{element.principleType}}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef='let row; columns: displayedColumns;'></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>

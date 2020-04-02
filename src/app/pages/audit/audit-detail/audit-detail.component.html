@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Audit Details <b>{{audit.id}}</b></h2>
+<mat-dialog-content>
+  <table>
+    <tr>
+      <td>Event Name</td>
+      <td>{{audit.eventName}}</td>
+      <td>Event Time</td>
+      <td>{{audit.eventTime}}</td>
+    </tr>
+    <tr>
+      <td>Authentication Type</td>
+      <td>{{audit.authType}}</td>
+      <td>Display Level</td>
+      <td>{{audit.displayLevel}}</td>
+    </tr>
+    <tr>
+      <td>Principle Name</td>
+      <td>{{audit.principleName}}</td>
+      <td>Principle Type</td>
+      <td>{{audit.principleType}}</td>
+    </tr>
+    <tr>
+      <td>Resource ID</td>
+      <td>{{audit.resourceId}}</td>
+      <td>Resource Type</td>
+      <td>{{audit.resourceType}}</td>
+    </tr>
+    <tr>
+      <td>Exception Name Type</td>
+      <td>{{audit.exceptionName}}</td>
+      <td>Exception Message</td>
+      <td>{{audit.exceptionMessage}}</td>
+    </tr>
+    <tr>
+      <td>Resource Type</td>
+      <td>{{audit.resourceType}}</td>
+      <td>Remote IP</td>
+      <td>{{audit.remoteIp}}</td>
+    </tr>
+    <tr>
+      <td>Session ID</td>
+      <td>{{audit.sessionId}}</td>
+      <td>Message</td>
+      <td>{{audit.message}}</td>
+    </tr>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button class="btn btn-danger" [mat-dialog-close]="">Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Scope ID" [disabled]="edit" [(ngModel)]="scope.scopeId" required>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Scope Name" [(ngModel)]="scope.scopeName" required>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button color="warn" (click)="close()">
+    Cancel
+  </button>
+  <button mat-flat-button color="primary" (click)="save()">
+    Save
+  </button>
+</mat-dialog-actions>

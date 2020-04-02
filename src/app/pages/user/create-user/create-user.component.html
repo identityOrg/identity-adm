@@ -1,0 +1,46 @@
+<div class="card" style="width: 100%">
+  <div class="card-body">
+    <h5 class="card-title">{{user.username||'New User'}} <span class="dot-inactive"></span></h5>
+    <p class="card-text">Create a new User</p>
+  </div>
+  <mat-tab-group>
+    <mat-tab label="General">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Username" [(ngModel)]="user.username">
+          </mat-form-field>
+        </li>
+        <li class="list-group-item">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First Name" [(ngModel)]="user.userClaims.firstName">
+          </mat-form-field>
+        </li>
+        <li class="list-group-item">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last Name" [(ngModel)]="user.userClaims.lastName">
+          </mat-form-field>
+        </li>
+      </ul>
+    </mat-tab>
+    <mat-tab label="Advanced">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <mat-slide-toggle [(ngModel)]="user.admin">
+            {{user.admin?'Admin':'Not an Admin'}}
+          </mat-slide-toggle>
+        </li>
+        <li class="list-group-item">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Expiry Date" type="datetime-local"
+                   [(ngModel)]="user.expiryDate">
+          </mat-form-field>
+        </li>
+      </ul>
+    </mat-tab>
+  </mat-tab-group>
+  <div class="card-body">
+    <a href="#" class="card-link" [routerLink]="['/user']">Cancel</a>
+    <a href="#" class="card-link" (click)="save()">Save User</a>
+  </div>
+</div>

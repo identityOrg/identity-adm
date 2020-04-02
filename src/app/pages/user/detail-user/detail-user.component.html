@@ -1,0 +1,281 @@
+<div class="card" style="width: 100%">
+  <div class="card-body">
+    <h4 class="card-title">
+      Details of user <b>{{user.username}}</b> <span [class]="user.active? 'dot-active': 'dot-inactive'"></span>
+    </h4>
+  </div>
+  <div class="card-body">
+    <mat-tab-group>
+      <mat-tab label="General">
+        <div class="row">
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <mat-icon matListIcon>perm_identity</mat-icon>
+                <h3 matLine> Name </h3>
+                <p matLine>
+                  <span> -- {{user.userClaims.name}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <mat-icon matListIcon>perm_identity</mat-icon>
+                <h3 matLine> Preferred Username </h3>
+                <p matLine>
+                  <span class="text-muted">preferred_username</span>
+                  <span> -- {{user.userClaims.preferred_username}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <mat-icon matListIcon>build</mat-icon>
+                <h3 matLine> Admin </h3>
+                <p matLine>
+                  <span> -- {{user.admin ? 'Yes' : 'No'}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <mat-icon matListIcon>lock</mat-icon>
+                <h3 matLine> Locked </h3>
+                <p matLine>
+                  <span> -- {{user.locked ? 'Yes' : 'No'}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <mat-icon matListIcon>offline_bolt</mat-icon>
+                <h3 matLine> Active </h3>
+                <p matLine>
+                  <span> -- {{user.active ? 'Yes' : 'No'}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <mat-icon matListIcon>face</mat-icon>
+                <h3 matLine> Created On </h3>
+                <p matLine>
+                  <span> -- {{user.creationDate|date:'medium'}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <mat-icon matListIcon>pan_tool</mat-icon>
+                <h3 matLine> Expires On </h3>
+                <p matLine>
+                  <span> -- {{user.expiryDate ? (user.expiryDate|date:'mediumDate') : 'Never Expire'}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <mat-icon matListIcon>vpn_key</mat-icon>
+                <h3 matLine> Password Expires On </h3>
+                <p matLine>
+                  <span> -- {{user.passwordExpiryDate|date:'mediumDate'}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+        <app-display-element [displayName]="'Admin'"
+                             [icon]="'build'"
+                             [yesNo]="true"
+                             [value]="user.admin"
+                             [attrName]="'admin'"
+        ></app-display-element>
+        <app-display-element [displayName]="'Admin'"
+                             [icon]="'build'"
+                             [yesNo]="true"
+                             [value]="user.admin"
+                             [attrName]="'admin'"
+        ></app-display-element>
+      </mat-tab>
+      <mat-tab label="Profile">
+        <div class="row">
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Given Name </h3>
+                <p matLine>
+                  <span class="text-muted"> given_name </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Family Name </h3>
+                <p matLine>
+                  <span class="text-muted"> family_name </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Middle Name </h3>
+                <p matLine>
+                  <span class="text-muted"> middle_name </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Nickname </h3>
+                <p matLine>
+                  <span class="text-muted"> nickname </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Gender </h3>
+                <p matLine>
+                  <span class="text-muted"> gender </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Birth Date </h3>
+                <p matLine>
+                  <span class="text-muted"> birthdate </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Time Zone </h3>
+                <p matLine>
+                  <span class="text-muted"> zoneinfo </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Locale </h3>
+                <p matLine>
+                  <span class="text-muted"> locale </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine> Updated At </h3>
+                <p matLine>
+                  <span class="text-muted"> updated_at </span>
+                  <span> -- demo </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+        <mat-list>
+          <mat-list-item>
+            <h3 matLine> Profile Link </h3>
+            <p matLine>
+              <span class="text-muted"> profile </span>
+              <span> -- demo </span>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <h3 matLine> Profile Picture URL </h3>
+            <p matLine>
+              <span class="text-muted"> picture </span>
+              <span> -- demo </span>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+            <h3 matLine> Website URL </h3>
+            <p matLine>
+              <span class="text-muted"> website </span>
+              <span> -- demo </span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+      <mat-tab label="Address">
+        <mat-list>
+          <mat-list-item>
+            <h3 matLine> From </h3>
+            <p matLine>
+              <span> span </span>
+              <span> -- demo </span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+      <mat-tab label="Communication">
+        <mat-list>
+          <mat-list-item>
+            <h3 matLine> From </h3>
+            <p matLine>
+              <span> span </span>
+              <span> -- demo </span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+      <mat-tab label="Custom">
+        <mat-list>
+          <mat-list-item>
+            <h3 matLine> From </h3>
+            <p matLine>
+              <span> span </span>
+              <span> -- demo </span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div class="card-body">
+    <button mat-icon-button color="accent" routerLink="/user">
+      <mat-icon>replay</mat-icon>
+    </button>
+    <a href="#" class="card-link" [routerLink]="['/user', 'edit', user.username]">Edit User</a>
+  </div>
+</div>

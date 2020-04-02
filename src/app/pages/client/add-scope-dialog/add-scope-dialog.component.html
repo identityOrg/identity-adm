@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Add Scope</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-select [(value)]="scopeId">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let scope of scopes" [value]="scope">{{scope.scopeName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="">No</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="scopeId">Yes</button>
+</mat-dialog-actions>

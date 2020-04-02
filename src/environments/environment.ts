@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiBase: 'http://localhost:8080',
+  oidcConfig: {
+    issuer: 'http://localhost:8080',
+    redirectUri: window.location.origin + '/dashboard',
+    clientId: 'client',
+    responseType: 'token id_token',
+    scope: 'openid profile email',
+    showDebugInformation: true,
+  },
 };
 
 /*
