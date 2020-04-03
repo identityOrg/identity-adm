@@ -31,6 +31,7 @@ import {OAuthModule} from 'angular-oauth2-oidc';
 import {DetailUserComponent} from './pages/user/detail-user/detail-user.component';
 import {ListUserComponent} from './pages/user/list-user/list-user.component';
 import {DisplayElementComponent} from './layout/display-element/display-element.component';
+import {NavigationComponent} from './layout/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {DisplayElementComponent} from './layout/display-element/display-element.
     AuditDetailComponent,
     DetailUserComponent,
     ListUserComponent,
-    DisplayElementComponent
+    DisplayElementComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

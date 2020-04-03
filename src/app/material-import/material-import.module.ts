@@ -15,6 +15,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
+import {LayoutModule} from '@angular/cdk/layout';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
@@ -33,7 +37,11 @@ import {MatSelectModule} from '@angular/material/select';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
   ],
   exports: [
     CommonModule,
@@ -51,7 +59,11 @@ import {MatSelectModule} from '@angular/material/select';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
   ],
   declarations: []
 })

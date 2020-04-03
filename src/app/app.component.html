@@ -1,17 +1,22 @@
-<app-nav></app-nav>
+<!--<app-nav></app-nav>-->
 
-<div class="container-fluid">
-  <div class="row">
-    <app-side-nav></app-side-nav>
+<!--<div class="container-fluid">-->
+<!--  <div class="row">-->
+<!--    <app-side-nav></app-side-nav>-->
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <router-outlet></router-outlet>
-    </main>
-    <!-- /.row -->
+<!--    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">-->
+<!--      <router-outlet></router-outlet>-->
+<!--    </main>-->
+<!--    &lt;!&ndash; /.row &ndash;&gt;-->
+<!--  </div>-->
+<!--  &lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--</div>-->
+
+<!--<app-footer></app-footer>-->
+<!--&lt;!&ndash; Bootstrap core JavaScript-->
+<!--    ================================================== &ndash;&gt;-->
+<app-navigation>
+  <div class="p-2">
+    <router-outlet></router-outlet>
   </div>
-  <!-- /.container-fluid -->
-</div>
-
-<app-footer></app-footer>
-<!-- Bootstrap core JavaScript
-    ================================================== -->
+</app-navigation>

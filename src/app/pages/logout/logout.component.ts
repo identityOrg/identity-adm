@@ -15,19 +15,8 @@ export class LogoutComponent implements OnInit {
   }
 
   loginAgain() {
-    this.oAuthService.loadDiscoveryDocumentAndTryLogin()
-      .then(r => {
-        console.log('Login tried ' + r);
-        if (r) {
-          this.oAuthService.loadUserProfile()
-            .then(userInfo => {
-              console.log(userInfo);
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }
-      });
+    this.oAuthService.initLoginFlow();
+    return false;
   }
 
 }
