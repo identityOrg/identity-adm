@@ -4,12 +4,33 @@
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar color="primary">Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#" routerLink="/user" routerLinkActive="active">User Management</a>
-      <a mat-list-item href="#" routerLink="/client" routerLinkActive="active">Client Management</a>
-      <a mat-list-item href="#" routerLink="/scope" routerLinkActive="active">Scope Management</a>
-      <a mat-list-item href="#" routerLink="/claim" routerLinkActive="active">Claim Management</a>
-      <a mat-list-item href="#" routerLink="/audit" routerLinkActive="active">Audits</a>
+    <mat-nav-list *ngIf="oAuthService.hasValidAccessToken()">
+      <mat-list-item>
+        <mat-icon matListIcon>account_circle</mat-icon>
+        <a mat-list-item href="#" routerLink="/user" routerLinkActive="active">User Management</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>settings_applications</mat-icon>
+        <a mat-list-item href="#" routerLink="/client" routerLinkActive="active">Client Management</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>receipt</mat-icon>
+        <a mat-list-item href="#" routerLink="/scope" routerLinkActive="active">Scope Management</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>format_list_bulleted</mat-icon>
+        <a mat-list-item href="#" routerLink="/claim" routerLinkActive="active">Claim Management</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>vpn_key</mat-icon>
+        <a mat-list-item href="#" routerLink="/audit" routerLinkActive="active">Audits</a>
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list *ngIf="!oAuthService.hasValidAccessToken()">
+      <mat-list-item>
+        <mat-icon matListIcon>account_circle</mat-icon>
+        <a mat-list-item href="#" (click)="login()">Sign In</a>
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -28,8 +49,7 @@
         <mat-icon aria-label="Profile menu">more_vert</mat-icon>
       </button>
       <mat-menu #appMenu="matMenu">
-        <button mat-menu-item *ngIf="!oAuthService.hasValidAccessToken()"
-                (click)="oAuthService.initLoginFlow()">Sign In
+        <button mat-menu-item *ngIf="!oAuthService.hasValidAccessToken()" (click)="login()">Sign In
         </button>
         <button mat-menu-item *ngIf="oAuthService.hasValidAccessToken()" routerLink="/logout">Sign Out
         </button>

@@ -3,7 +3,6 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
 import {OAuthService} from 'angular-oauth2-oidc';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -20,5 +19,10 @@ export class NavigationComponent {
 
   constructor(private breakpointObserver: BreakpointObserver,
               public oAuthService: OAuthService) {
+  }
+
+  login() {
+    this.oAuthService.initLoginFlow();
+    return false;
   }
 }
