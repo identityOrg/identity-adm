@@ -32,6 +32,7 @@ import {DetailUserComponent} from './pages/user/detail-user/detail-user.componen
 import {ListUserComponent} from './pages/user/list-user/list-user.component';
 import {DisplayElementComponent} from './layout/display-element/display-element.component';
 import {NavigationComponent} from './layout/navigation/navigation.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {NavigationComponent} from './layout/navigation/navigation.component';
     DetailUserComponent,
     ListUserComponent,
     DisplayElementComponent,
-    NavigationComponent
+    NavigationComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -33,6 +33,8 @@
         </button>
         <button mat-menu-item *ngIf="oAuthService.hasValidAccessToken()" routerLink="/logout">Sign Out
         </button>
+        <button mat-menu-item *ngIf="oAuthService.hasValidAccessToken()" routerLink="/change-password">Change Password
+        </button>
       </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->

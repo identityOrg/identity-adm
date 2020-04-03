@@ -16,6 +16,7 @@ import {ClientComponent} from './pages/client/client.component';
 import {AuditComponent} from './pages/audit/audit.component';
 import {DetailUserComponent} from './pages/user/detail-user/detail-user.component';
 import {ListUserComponent} from './pages/user/list-user/list-user.component';
+import {ChangePasswordComponent} from './pages/change-password/change-password.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -37,6 +38,7 @@ const routes: Routes = [
   },
   {path: 'scope', component: ScopeComponent, canActivate: [LoginGuard]},
   {path: 'audit', component: AuditComponent, canActivate: [LoginGuard]},
+  {path: 'change-password', component: ChangePasswordComponent, canActivate: [LoginGuard]},
   {path: 'logout', component: LogoutComponent, canActivate: [LogoutGuard]},
   {path: 'callback', component: CallbackComponent},
   {path: '**', component: PageNotFoundComponent, canActivate: [LoginGuard]}
