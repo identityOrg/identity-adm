@@ -4,23 +4,25 @@
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar color="primary">Menu</mat-toolbar>
-    <mat-nav-list *ngIf="oAuthService.hasValidAccessToken()">
+    <mat-nav-list *ngIf="oAuthService.hasValidAccessToken()" dense>
+      <h3 matSubheader>Management</h3>
       <mat-list-item>
         <mat-icon matListIcon>account_circle</mat-icon>
-        <a mat-list-item href="#" routerLink="/user" routerLinkActive="active">User Management</a>
+        <a mat-list-item href="#" routerLink="/user" routerLinkActive="active">Users</a>
       </mat-list-item>
       <mat-list-item>
         <mat-icon matListIcon>settings_applications</mat-icon>
-        <a mat-list-item href="#" routerLink="/client" routerLinkActive="active">Client Management</a>
+        <a mat-list-item href="#" routerLink="/client" routerLinkActive="active">Clients</a>
       </mat-list-item>
       <mat-list-item>
         <mat-icon matListIcon>receipt</mat-icon>
-        <a mat-list-item href="#" routerLink="/scope" routerLinkActive="active">Scope Management</a>
+        <a mat-list-item href="#" routerLink="/scope" routerLinkActive="active">Scopes</a>
       </mat-list-item>
       <mat-list-item>
         <mat-icon matListIcon>format_list_bulleted</mat-icon>
-        <a mat-list-item href="#" routerLink="/claim" routerLinkActive="active">Claim Management</a>
+        <a mat-list-item href="#" routerLink="/claim" routerLinkActive="active">Claims</a>
       </mat-list-item>
+      <h3 matSubheader>Monitoring</h3>
       <mat-list-item>
         <mat-icon matListIcon>vpn_key</mat-icon>
         <a mat-list-item href="#" routerLink="/audit" routerLinkActive="active">Audits</a>
