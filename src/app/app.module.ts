@@ -33,6 +33,8 @@ import {ListUserComponent} from './pages/user/list-user/list-user.component';
 import {DisplayElementComponent} from './layout/display-element/display-element.component';
 import {NavigationComponent} from './layout/navigation/navigation.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ListClientComponent } from './pages/client/list-client/list-client.component';
+import { DetailClientComponent } from './pages/client/detail-client/detail-client.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     ListUserComponent,
     DisplayElementComponent,
     NavigationComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ListClientComponent,
+    DetailClientComponent
   ],
   imports: [
     BrowserModule,

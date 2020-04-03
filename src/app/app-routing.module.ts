@@ -17,15 +17,18 @@ import {AuditComponent} from './pages/audit/audit.component';
 import {DetailUserComponent} from './pages/user/detail-user/detail-user.component';
 import {ListUserComponent} from './pages/user/list-user/list-user.component';
 import {ChangePasswordComponent} from './pages/change-password/change-password.component';
+import {ListClientComponent} from './pages/client/list-client/list-client.component';
+import {DetailClientComponent} from './pages/client/detail-client/detail-client.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: HomeComponent, canActivate: [LoginGuard]},
   {
-    path: 'client', children: [
-      {path: '', pathMatch: 'full', component: ClientComponent, canActivate: [LoginGuard]},
+    path: 'client', component: ClientComponent, children: [
+      {path: '', pathMatch: 'full', component: ListClientComponent, canActivate: [LoginGuard]},
       {path: 'create', component: CreateClientComponent, canActivate: [LoginGuard]},
-      {path: ':mode/:clientId', component: EditClientComponent, canActivate: [LoginGuard]}
+      {path: 'edit/:clientId', component: EditClientComponent, canActivate: [LoginGuard]},
+      {path: 'detail/:clientId', component: DetailClientComponent, canActivate: [LoginGuard]}
     ]
   },
   {

@@ -45,8 +45,7 @@
       <ng-container matColumnDef="admin">
         <th mat-header-cell *matHeaderCellDef> Admin</th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon *ngIf="element.admin" color="accent">done</mat-icon>
-          <mat-icon *ngIf="element.admin == false" color="accent">clear</mat-icon>
+          <mat-icon [color]="element.admin?'primary':'warn'">{{element.admin ? 'done' : 'clear'}}</mat-icon>
         </td>
       </ng-container>
 

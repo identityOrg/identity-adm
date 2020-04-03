@@ -1,8 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ClientService} from '../../service/client.service';
-import {Client} from '../../model/client';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-client',
@@ -11,23 +7,10 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class ClientComponent implements OnInit {
 
-  displayedColumns = ['clientId', 'clientName', 'status', 'creationDate', 'expiryDate'];
-  dataSource: MatTableDataSource<Client> = null;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  constructor(private clientService: ClientService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.clientService.listClients(null)
-      .subscribe(data => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-      }, err => {
-        this.dataSource = null;
-        console.log(err);
-      });
   }
 
 }
