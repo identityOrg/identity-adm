@@ -1,14 +1,12 @@
-<!-- Page Content -->
-<div id="page-wrapper">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">User Management</h1>
-      </div>
-      <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <router-outlet></router-outlet>
-  </div>
-  <!-- /.container-fluid -->
-</div>
+<mat-toolbar>
+  <span>User Management</span>
+  <span fxFlex="1 1 auto"></span>
+  <button mat-icon-button color="primary" routerLink="/user">
+    <mat-icon aria-label="Create new user">format_list_bulleted</mat-icon>
+  </button>
+  <button mat-icon-button color="warn" routerLink="/user/create">
+    <mat-icon aria-label="Create new user">add_circle</mat-icon>
+  </button>
+</mat-toolbar>
+<router-outlet></router-outlet>
+

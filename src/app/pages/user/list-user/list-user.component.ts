@@ -3,6 +3,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {User} from '../../../model/user';
 import {MatPaginator} from '@angular/material/paginator';
 import {UserService} from '../../../service/user.service';
+import {MediaObserver} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-list-user',
@@ -16,7 +17,7 @@ export class ListUserComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private mediaObserver: MediaObserver) {
   }
 
   ngOnInit() {
@@ -27,6 +28,17 @@ export class ListUserComponent implements OnInit {
       }, err => {
         this.dataSource = null;
         console.log(err);
+      });
+
+    this.mediaObserver.asObservable()
+      .subscribe(() => {
+        if (this.mediaObserver.isActive('lt-sm')) {
+          this.displayedColumns = ['username', 'active', 'admin'];
+        } else if (this.mediaObserver.isActive('lt-md')) {
+          this.displayedColumns = ['username', 'active', 'locked', 'passwordExpiryDate', 'admin'];
+        } else {
+          this.displayedColumns = ['username', 'active', 'locked', 'creationDate', 'passwordExpiryDate', 'admin'];
+        }
       });
   }
 

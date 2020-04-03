@@ -13,6 +13,8 @@ export const environment = {
     scope: 'openid profile email',
     showDebugInformation: true,
   },
+  logMedia: true,
+
 };
 
 /*

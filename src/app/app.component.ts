@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {MediaObserver} from '@angular/flex-layout';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {environment} from '../environments/environment';
+import {MediaObserver} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-root',
@@ -29,10 +29,13 @@ export class AppComponent implements OnInit {
             });
         }
       });
+
     this.mediaObserver.asObservable()
-      .subscribe(next => {
-        next.forEach(change => {
-          console.log(change);
+      .subscribe(value => {
+        value.forEach(mc => {
+          if (environment.logMedia) {
+            console.log(mc.mqAlias);
+          }
         });
       });
   }
