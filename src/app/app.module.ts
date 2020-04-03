@@ -35,6 +35,9 @@ import {NavigationComponent} from './layout/navigation/navigation.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { ListClientComponent } from './pages/client/list-client/list-client.component';
 import { DetailClientComponent } from './pages/client/detail-client/detail-client.component';
+import { ListScopeComponent } from './pages/scope/list-scope/list-scope.component';
+import { DetailScopeComponent } from './pages/scope/detail-scope/detail-scope.component';
+import { CreateScopeComponent } from './pages/scope/create-scope/create-scope.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { DetailClientComponent } from './pages/client/detail-client/detail-clien
     NavigationComponent,
     ChangePasswordComponent,
     ListClientComponent,
-    DetailClientComponent
+    DetailClientComponent,
+    ListScopeComponent,
+    DetailScopeComponent,
+    CreateScopeComponent
   ],
   imports: [
     BrowserModule,

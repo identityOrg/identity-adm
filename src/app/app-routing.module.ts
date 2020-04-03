@@ -19,6 +19,10 @@ import {ListUserComponent} from './pages/user/list-user/list-user.component';
 import {ChangePasswordComponent} from './pages/change-password/change-password.component';
 import {ListClientComponent} from './pages/client/list-client/list-client.component';
 import {DetailClientComponent} from './pages/client/detail-client/detail-client.component';
+import {ListScopeComponent} from './pages/scope/list-scope/list-scope.component';
+import {EditScopeComponent} from './pages/scope/edit-scope/edit-scope.component';
+import {DetailScopeComponent} from './pages/scope/detail-scope/detail-scope.component';
+import {CreateScopeComponent} from './pages/scope/create-scope/create-scope.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -39,7 +43,14 @@ const routes: Routes = [
       {path: 'detail/:username', component: DetailUserComponent, canActivate: [LoginGuard]}
     ]
   },
-  {path: 'scope', component: ScopeComponent, canActivate: [LoginGuard]},
+  {
+    path: 'scope', component: ScopeComponent, children: [
+      {path: '', pathMatch: 'full', component: ListScopeComponent, canActivate: [LoginGuard]},
+      {path: 'create', component: CreateScopeComponent, canActivate: [LoginGuard]},
+      {path: 'edit/:scopeId', component: EditScopeComponent, canActivate: [LoginGuard]},
+      {path: 'detail/:scopeId', component: DetailScopeComponent, canActivate: [LoginGuard]}
+    ]
+  },
   {path: 'audit', component: AuditComponent, canActivate: [LoginGuard]},
   {path: 'change-password', component: ChangePasswordComponent, canActivate: [LoginGuard]},
   {path: 'logout', component: LogoutComponent, canActivate: [LogoutGuard]},
