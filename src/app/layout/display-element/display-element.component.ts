@@ -12,6 +12,7 @@ export class DisplayElementComponent implements OnInit {
   @Input() icon: string;
   @Input() value: any;
   @Input() attrName: string;
+  @Input() dateFormat: string;
 
   constructor() {
   }

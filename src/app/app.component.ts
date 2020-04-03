@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MediaObserver} from '@angular/flex-layout';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {environment} from '../environments/environment';
 
@@ -10,7 +11,7 @@ import {environment} from '../environments/environment';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor(private oAuthService: OAuthService) {
+  constructor(private oAuthService: OAuthService, private mediaObserver: MediaObserver) {
   }
 
   ngOnInit(): void {
@@ -27,6 +28,12 @@ export class AppComponent implements OnInit {
               console.log(err);
             });
         }
+      });
+    this.mediaObserver.asObservable()
+      .subscribe(next => {
+        next.forEach(change => {
+          console.log(change);
+        });
       });
   }
 }

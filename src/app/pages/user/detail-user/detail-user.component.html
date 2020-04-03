@@ -7,109 +7,70 @@
   <div class="card-body">
     <mat-tab-group>
       <mat-tab label="General">
-        <div class="row">
-          <div class="col-sm-12 col-lg-6">
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListIcon>perm_identity</mat-icon>
-                <h3 matLine> Name </h3>
-                <p matLine>
-                  <span> -- {{user.userClaims.name}} </span>
-                </p>
-              </mat-list-item>
-            </mat-list>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap">
+          <div fxFlex="100" fxFlex.gt-xs="45">
+            <app-display-element [displayName]="'Name'"
+                                 [icon]="'perm_identity'"
+                                 [value]="user.userClaims.name"
+                                 [attrName]="'name'">
+            </app-display-element>
           </div>
-          <div class="col-sm-12 col-lg-6">
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListIcon>perm_identity</mat-icon>
-                <h3 matLine> Preferred Username </h3>
-                <p matLine>
-                  <span class="text-muted">preferred_username</span>
-                  <span> -- {{user.userClaims.preferred_username}} </span>
-                </p>
-              </mat-list-item>
-            </mat-list>
+          <div fxFlex="100" fxFlex.gt-xs="45">
+            <app-display-element [displayName]="'Preferred Username'"
+                                 [icon]="'perm_identity'"
+                                 [value]="user.userClaims.preferred_username"
+                                 [attrName]="'preferred_username'">
+            </app-display-element>
           </div>
-          <div class="col-sm-12 col-lg-6">
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListIcon>build</mat-icon>
-                <h3 matLine> Admin </h3>
-                <p matLine>
-                  <span> -- {{user.admin ? 'Yes' : 'No'}} </span>
-                </p>
-              </mat-list-item>
-            </mat-list>
+          <div fxFlex="100" fxFlex.gt-xs="45">
+            <app-display-element [displayName]="'Admin'"
+                                 [icon]="'build'"
+                                 [yesNo]="true"
+                                 [value]="user.admin"
+                                 [attrName]="'admin'">
+            </app-display-element>
           </div>
-          <div class="col-sm-12 col-lg-6">
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListIcon>lock</mat-icon>
-                <h3 matLine> Locked </h3>
-                <p matLine>
-                  <span> -- {{user.locked ? 'Yes' : 'No'}} </span>
-                </p>
-              </mat-list-item>
-            </mat-list>
+          <div fxFlex="100" fxFlex.gt-xs="45">
+            <app-display-element [displayName]="'Locked'"
+                                 [icon]="'lock'"
+                                 [yesNo]="true"
+                                 [value]="user.locked"
+                                 [attrName]="'locked'">
+            </app-display-element>
           </div>
-          <div class="col-sm-12 col-lg-6">
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListIcon>offline_bolt</mat-icon>
-                <h3 matLine> Active </h3>
-                <p matLine>
-                  <span> -- {{user.active ? 'Yes' : 'No'}} </span>
-                </p>
-              </mat-list-item>
-            </mat-list>
+          <div fxFlex="100" fxFlex.gt-xs="45">
+            <app-display-element [displayName]="'Active'"
+                                 [icon]="'offline_bolt'"
+                                 [yesNo]="true"
+                                 [value]="user.active"
+                                 [attrName]="'active'">
+            </app-display-element>
           </div>
-          <div class="col-sm-12 col-lg-6">
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListIcon>face</mat-icon>
-                <h3 matLine> Created On </h3>
-                <p matLine>
-                  <span> -- {{user.creationDate|date:'medium'}} </span>
-                </p>
-              </mat-list-item>
-            </mat-list>
+          <div fxFlex="100" fxFlex.gt-xs="45">
+            <app-display-element [displayName]="'Created On'"
+                                 [icon]="'face'"
+                                 [dateFormat]="'medium'"
+                                 [value]="user.creationDate"
+                                 [attrName]="'created_on'">
+            </app-display-element>
           </div>
-          <div class="col-sm-12 col-lg-6">
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListIcon>pan_tool</mat-icon>
-                <h3 matLine> Expires On </h3>
-                <p matLine>
-                  <span> -- {{user.expiryDate ? (user.expiryDate|date:'mediumDate') : 'Never Expire'}} </span>
-                </p>
-              </mat-list-item>
-            </mat-list>
+          <div fxFlex="100" fxFlex.gt-xs="45">
+            <app-display-element [displayName]="'Expires On'"
+                                 [icon]="'pan_tool'"
+                                 [dateFormat]="'mediumDate'"
+                                 [value]="user.expiryDate"
+                                 [attrName]="'expiry_date'">
+            </app-display-element>
           </div>
-          <div class="col-sm-12 col-lg-6">
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListIcon>vpn_key</mat-icon>
-                <h3 matLine> Password Expires On </h3>
-                <p matLine>
-                  <span> -- {{user.passwordExpiryDate|date:'mediumDate'}} </span>
-                </p>
-              </mat-list-item>
-            </mat-list>
+          <div fxFlex="100" fxFlex.gt-xs="45">
+            <app-display-element [displayName]="'Password Expires On'"
+                                 [icon]="'vpn_key'"
+                                 [dateFormat]="'mediumDate'"
+                                 [value]="user.passwordExpiryDate"
+                                 [attrName]="'admin'">
+            </app-display-element>
           </div>
         </div>
-        <app-display-element [displayName]="'Admin'"
-                             [icon]="'build'"
-                             [yesNo]="true"
-                             [value]="user.admin"
-                             [attrName]="'admin'"
-        ></app-display-element>
-        <app-display-element [displayName]="'Admin'"
-                             [icon]="'build'"
-                             [yesNo]="true"
-                             [value]="user.admin"
-                             [attrName]="'admin'"
-        ></app-display-element>
       </mat-tab>
       <mat-tab label="Profile">
         <div class="row">

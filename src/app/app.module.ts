@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {NavComponent} from './layout/nav/nav.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {SideNavComponent} from './layout/side-nav/side-nav.component';
@@ -27,9 +28,9 @@ import {AuditComponent} from './pages/audit/audit.component';
 import {AuditDetailComponent} from './pages/audit/audit-detail/audit-detail.component';
 import {MaterialImportModule} from './material-import/material-import.module';
 import {OAuthModule} from 'angular-oauth2-oidc';
-import { DetailUserComponent } from './pages/user/detail-user/detail-user.component';
-import { ListUserComponent } from './pages/user/list-user/list-user.component';
-import { DisplayElementComponent } from './layout/display-element/display-element.component';
+import {DetailUserComponent} from './pages/user/detail-user/detail-user.component';
+import {ListUserComponent} from './pages/user/list-user/list-user.component';
+import {DisplayElementComponent} from './layout/display-element/display-element.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { DisplayElementComponent } from './layout/display-element/display-elemen
     BrowserAnimationsModule,
     MaterialImportModule,
     ServiceModule,
+    FlexLayoutModule,
     FormsModule,
     OAuthModule.forRoot(),
   ],
