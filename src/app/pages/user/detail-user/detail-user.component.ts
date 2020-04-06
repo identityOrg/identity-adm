@@ -3,6 +3,9 @@ import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
 import {ActivatedRoute} from '@angular/router';
 import {UserClaim} from '../../../model/user-claim';
+import {Address} from '../../../model/address';
+import {ClaimService} from '../../../service/claim.service';
+import {Claim} from '../../../model/claim';
 
 @Component({
   selector: 'app-detail-user',
@@ -12,10 +15,13 @@ import {UserClaim} from '../../../model/user-claim';
 export class DetailUserComponent implements OnInit {
 
   user = {} as User;
+  customClaims = [];
 
   constructor(private userService: UserService,
-              private activeRoute: ActivatedRoute) {
+              private activeRoute: ActivatedRoute,
+              private claimService: ClaimService) {
     this.user.userClaims = {} as UserClaim;
+    this.user.userClaims.address = {} as Address;
   }
 
   ngOnInit(): void {
@@ -26,6 +32,9 @@ export class DetailUserComponent implements OnInit {
             this.user = data;
           });
       });
+    this.claimService.listClaims({custom: true} as Claim)
+      .subscribe(data => {
+        this.customClaims = data;
+      });
   }
-
 }

@@ -13,7 +13,7 @@ import {AuditService} from './audit.service';
   ],
   exports: [],
   declarations: [],
-  providers: [UserService, ClientService, ScopeService, AuditService]
+  providers: [UserService, ClientService, ScopeService, AuditService, ClientService]
 })
 export class ServiceModule {
 }

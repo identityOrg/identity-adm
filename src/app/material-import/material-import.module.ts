@@ -19,6 +19,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
+    MatExpansionModule,
   ],
   exports: [
     CommonModule,
@@ -64,6 +66,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatExpansionModule,
   ],
   declarations: []
 })

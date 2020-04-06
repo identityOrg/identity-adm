@@ -38,6 +38,7 @@ import { DetailClientComponent } from './pages/client/detail-client/detail-clien
 import { ListScopeComponent } from './pages/scope/list-scope/list-scope.component';
 import { DetailScopeComponent } from './pages/scope/detail-scope/detail-scope.component';
 import { CreateScopeComponent } from './pages/scope/create-scope/create-scope.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -70,9 +71,10 @@ import { CreateScopeComponent } from './pages/scope/create-scope/create-scope.co
     DetailClientComponent,
     ListScopeComponent,
     DetailScopeComponent,
-    CreateScopeComponent
+    CreateScopeComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
