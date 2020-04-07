@@ -1,10 +1,12 @@
-<div class="card" style="width: 100%">
-  <div class="card-body">
-    <h4 class="card-title">
-      Details of user <b>{{user.username}}</b> <span [class]="user.active? 'dot-active': 'dot-inactive'"></span>
-    </h4>
-  </div>
-  <div class="card-body">
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span>User "<b>{{user.username}}</b>"</span>
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="user.admin">Admin User</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!user.admin">General User</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
     <mat-accordion>
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
@@ -17,55 +19,55 @@
                                icon="perm_identity"
                                [value]="user.userClaims.name"
                                attrName="name"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Preferred Username"
                                icon="perm_identity"
                                [value]="user.userClaims.preferred_username"
                                attrName="preferred_username"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Admin"
                                icon="build"
                                yesNo="true"
                                [value]="user.admin"
                                attrName="admin"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Locked"
                                icon="lock"
                                yesNo="true"
                                [value]="user.locked"
                                attrName="locked"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Active"
                                icon="offline_bolt"
                                yesNo="true"
                                [value]="user.active"
                                attrName="active"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Created On"
                                icon="face"
                                dateFormat="medium"
                                [value]="user.creationDate"
                                attrName="created_on"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Expires On"
                                icon="pan_tool"
                                dateFormat="mediumDate"
                                [value]="user.expiryDate"
                                attrName="expiry_date"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Password Expires On"
                                icon="vpn_key"
                                dateFormat="mediumDate"
                                [value]="user.passwordExpiryDate"
                                attrName="admin"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
         </div>
       </mat-expansion-panel>
@@ -79,48 +81,48 @@
           <app-display-element displayName="Given Name"
                                attrName="given_name"
                                [value]="user.userClaims.given_name"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Given Name"
                                attrName="family_name"
                                [value]="user.userClaims.family_name"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Middle Name"
                                attrName="middle_name"
                                [value]="user.userClaims.middle_name"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Nickname"
                                attrName="nickname"
                                [value]="user.userClaims.nickname"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Gender"
                                attrName="gender"
                                [value]="user.userClaims.gender"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Birth Date"
                                dateFormat="mediumDate"
                                attrName="birthdate"
                                [value]="user.userClaims.birthdate"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Time Zone"
                                attrName="zoneinfo"
                                [value]="user.userClaims.zoneinfo"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Locale"
                                attrName="locale"
                                [value]="user.userClaims.locale"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Updated At"
                                attrName="updated_at"
                                [value]="user.userClaims.updated_at"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Profile URL"
                                attrName="profile"
@@ -149,42 +151,42 @@
           <app-display-element displayName="Phone Number"
                                attrName="phone_number"
                                [value]="user.userClaims.phone_number"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Phone Number Verified"
                                attrName="phone_number_verified"
                                [value]="user.userClaims.phone_number_verified"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Formatted Address"
                                attrName="address.formatted"
                                [value]="user.userClaims.address.formatted"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Street Address"
                                attrName="address.street_address"
                                [value]="user.userClaims.address.street_address"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Locality"
                                attrName="address.locality"
                                [value]="user.userClaims.address.locality"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Region"
                                attrName="address.region"
                                [value]="user.userClaims.address.region"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Postal Code"
                                attrName="address.postal_code"
                                [value]="user.userClaims.address.postal_code"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Country"
                                attrName="address.country"
                                [value]="user.userClaims.address.country"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
         </div>
       </mat-expansion-panel>
@@ -198,22 +200,22 @@
           <app-display-element displayName="Phone Number"
                                attrName="phone_number"
                                [value]="user.userClaims.phone_number"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Phone Number Verified"
                                attrName="phone_number_verified"
                                [value]="user.userClaims.phone_number_verified"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Email"
                                attrName="email"
                                [value]="user.userClaims.email"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
           <app-display-element displayName="Email Verified"
                                attrName="email_verified"
                                [value]="user.userClaims.email_verified"
-                               fxFlex="100" fxFlex.gt-xs="45">
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
           </app-display-element>
         </div>
       </mat-expansion-panel>
@@ -224,20 +226,22 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayout.gt-xs="row wrap">
-          <app-display-element [displayName]="cAttr.standardAttribute"
+          <app-display-element [displayName]="cAttr.description"
                                [attrName]="cAttr.standardAttribute"
                                [value]="user.userClaims[cAttr.standardAttribute]"
-                               fxFlex="100" fxFlex.gt-xs="45"
+                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32"
                                *ngFor="let cAttr of customClaims">
           </app-display-element>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
-  </div>
-  <div class="card-body">
+  </mat-card-content>
+  <mat-card-actions>
     <button mat-icon-button color="accent" routerLink="/user">
       <mat-icon>replay</mat-icon>
     </button>
-    <a href="#" class="card-link" [routerLink]="['/user', 'edit', user.username]">Edit User</a>
-  </div>
-</div>
+    <button mat-icon-button color="primary" [routerLink]="['user', 'edit', user.username]">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

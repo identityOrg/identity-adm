@@ -17,17 +17,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.oAuthService.configure(environment.oidcConfig);
     this.oAuthService.loadDiscoveryDocumentAndTryLogin()
-      .then(r => {
-        console.log('Login tried ' + r);
-        if (r) {
-          this.oAuthService.loadUserProfile()
-            .then(userInfo => {
-              console.log(userInfo);
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }
+      .then(() => {
       });
 
     this.mediaObserver.asObservable()

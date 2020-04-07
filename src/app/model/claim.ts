@@ -3,4 +3,5 @@ export interface Claim {
   claimType: string;
   custom: boolean;
   standardAttribute: string;
+  description: string;
 }

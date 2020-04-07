@@ -7,10 +7,23 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
+  activeUserName: string;
+
   constructor() {
   }
 
   ngOnInit() {
   }
 
+  subscribeUsername(event) {
+    if (event.activeUser) {
+      event.activeUser.subscribe(username => {
+        this.activeUserName = username;
+      });
+    }
+  }
+
+  unSubscribeUsername() {
+    this.activeUserName = null;
+  }
 }

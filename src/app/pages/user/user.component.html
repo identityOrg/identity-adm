@@ -1,6 +1,9 @@
 <mat-toolbar>
   <span>User Management</span>
   <span fxFlex="1 1 auto"></span>
+  <button *ngIf="activeUserName" mat-icon-button color="primary" [routerLink]="['/user', 'edit', activeUserName]">
+    <mat-icon aria-label="Create new user">edit</mat-icon>
+  </button>
   <button mat-icon-button color="primary" routerLink="/user">
     <mat-icon aria-label="Create new user">format_list_bulleted</mat-icon>
   </button>
@@ -8,5 +11,5 @@
     <mat-icon aria-label="Create new user">add_circle</mat-icon>
   </button>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<router-outlet (activate)="subscribeUsername($event)" (deactivate)="unSubscribeUsername()"></router-outlet>
 

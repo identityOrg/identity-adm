@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
 import {ActivatedRoute} from '@angular/router';
@@ -14,8 +14,9 @@ import {Claim} from '../../../model/claim';
 })
 export class DetailUserComponent implements OnInit {
 
+  @Output() activeUser: EventEmitter<string> = new EventEmitter();
   user = {} as User;
-  customClaims = [];
+  customClaims: Array<Claim> = [];
 
   constructor(private userService: UserService,
               private activeRoute: ActivatedRoute,
@@ -30,11 +31,16 @@ export class DetailUserComponent implements OnInit {
         this.userService.getUser(pMap.get('username'))
           .subscribe(data => {
             this.user = data;
+            this.activeUser.emit(data.username);
           });
       });
     this.claimService.listClaims({custom: true} as Claim)
       .subscribe(data => {
         this.customClaims = data;
       });
+  }
+
+  getUserName() {
+    return this.user.username;
   }
 }

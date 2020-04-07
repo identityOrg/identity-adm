@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ConfirmDialogComponent} from '../../../confirm-dialog/confirm-dialog.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../model/user';
@@ -13,6 +13,7 @@ import {UserClaim} from '../../../model/user-claim';
 })
 export class EditUserComponent implements OnInit {
 
+  @Output() activeUser: EventEmitter<string> = new EventEmitter();
   editMode = true;
   user = {} as User;
 
@@ -24,13 +25,7 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activeRoute.paramMap
-      .subscribe(pMap => {
-        this.userService.getUser(pMap.get('username'))
-          .subscribe(data => {
-            this.setUserData(data);
-          });
-      });
+    this.resetUser();
   }
 
   private setUserData(data: User) {
@@ -83,5 +78,16 @@ export class EditUserComponent implements OnInit {
         }
       });
     return false;
+  }
+
+  resetUser() {
+    this.activeRoute.paramMap
+      .subscribe(pMap => {
+        this.userService.getUser(pMap.get('username'))
+          .subscribe(data => {
+            this.setUserData(data);
+            this.activeUser.emit(data.username);
+          });
+      });
   }
 }

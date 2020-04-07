@@ -15,7 +15,6 @@ export class ClaimService {
 
   listClaims(criteria: Claim): Observable<Claim[]> {
     let param = new HttpParams();
-    console.log(criteria);
     if (criteria) {
       if (criteria.custom) {
         param = param.append('custom', criteria.custom.toString());
@@ -27,7 +26,6 @@ export class ClaimService {
         param = param.append('standardAttribute', criteria.standardAttribute);
       }
     }
-    console.log(param);
     return this.http.get<Claim[]>(environment.apiBase + '/api/claim', {
       headers: {
         Authorization: this.oAuthService.authorizationHeader(),

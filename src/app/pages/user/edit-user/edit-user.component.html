@@ -1,66 +1,99 @@
-<div class="card" style="width: 100%">
-  <div class="card-body">
-    <h5 class="card-title">{{user.username}} <span
-      [class]="user.active? 'dot-active': 'dot-inactive'"></span></h5>
-    <p class="card-text" *ngIf="editMode == false">Display User details</p>
-    <p class="card-text" *ngIf="editMode">Edit Client details</p>
-  </div>
-  <mat-tab-group>
-    <mat-tab label="General">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Username" disabled [(ngModel)]="user.username">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="First Name" [disabled]="editMode == false" [(ngModel)]="user.userClaims.firstName">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Last Name" [disabled]="editMode == false" [(ngModel)]="user.userClaims.lastName">
-          </mat-form-field>
-        </li>
-      </ul>
-    </mat-tab>
-    <mat-tab label="Advanced">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Creation Date" type="datetime-local" disabled
-                   [(ngModel)]="user.creationDate">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-slide-toggle [(ngModel)]="user.admin" [disabled]="editMode == false">{{user.admin?'Admin':'Not an Admin'}}</mat-slide-toggle>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Expiry Date" type="datetime-local" [readonly]="editMode == false"
-                   [(ngModel)]="user.expiryDate">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Password Expiry Date" type="datetime-local" disabled
-                   [(ngModel)]="user.passwordExpiryDate">
-          </mat-form-field>
-        </li>
-      </ul>
-    </mat-tab>
-  </mat-tab-group>
-  <div class="card-body">
-    <button mat-icon-button color="accent" routerLink="/user">
-      <mat-icon>replay</mat-icon>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span>Edit user "<b>{{user.username}}</b>"</span>
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="user.admin">Admin User</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!user.admin">General User</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            General Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Username" disabled [(ngModel)]="user.username">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Preferred Username</mat-label>
+          <input matInput placeholder="Preferred Username" [(ngModel)]="user.userClaims.preferred_username">
+          <mat-hint>User attribute 'preferred_username'</mat-hint>
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button color="warn" [routerLink]="['/user', 'detail', user.username]">
+      <mat-icon>cancel</mat-icon>
     </button>
-    <a href="#" class="card-link" *ngIf="editMode == false" [routerLink]="['/user', 'edit', user.username]">Edit
-      User</a>
-    <a href="#" class="card-link" *ngIf="editMode == true"
-       [routerLink]="['/user', 'detail', user.username]">Cancel</a>
-    <a href="#" class="card-link" *ngIf="editMode == true" (click)="save()">Save User</a>
-    <a href="#" class="card-link" *ngIf="user.active" (click)="lockUser()">Deactivate User</a>
-    <a href="#" class="card-link" *ngIf="user.active == false" (click)="enableUser()">Activate User</a>
-  </div>
+    <button mat-icon-button color="accent" (click)="resetUser()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" *ngIf="user.active" (click)="lockUser()">
+      <mat-icon>lock</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" *ngIf="!user.active" (click)="enableUser()">
+      <mat-icon>lock_open</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+<mat-tab-group>
+  <mat-tab label="General">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Username" disabled [(ngModel)]="user.username">
+        </mat-form-field>
+      </li>
+      <li class="list-group-item">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="First Name" [disabled]="editMode == false"
+                 [(ngModel)]="user.userClaims.firstName">
+        </mat-form-field>
+      </li>
+      <li class="list-group-item">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Last Name" [disabled]="editMode == false" [(ngModel)]="user.userClaims.lastName">
+        </mat-form-field>
+      </li>
+    </ul>
+  </mat-tab>
+  <mat-tab label="Advanced">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Creation Date" type="datetime-local" disabled
+                 [(ngModel)]="user.creationDate">
+        </mat-form-field>
+      </li>
+      <li class="list-group-item">
+        <mat-slide-toggle [(ngModel)]="user.admin"
+                          [disabled]="editMode == false">{{user.admin ? 'Admin' : 'Not an Admin'}}</mat-slide-toggle>
+      </li>
+      <li class="list-group-item">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Expiry Date" type="datetime-local" [readonly]="editMode == false"
+                 [(ngModel)]="user.expiryDate">
+        </mat-form-field>
+      </li>
+      <li class="list-group-item">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Password Expiry Date" type="datetime-local" disabled
+                 [(ngModel)]="user.passwordExpiryDate">
+        </mat-form-field>
+      </li>
+    </ul>
+  </mat-tab>
+</mat-tab-group>
+<div class="card-body">
+  <button mat-icon-button color="accent" routerLink="/user">
+    <mat-icon>replay</mat-icon>
+  </button>
+
 </div>
