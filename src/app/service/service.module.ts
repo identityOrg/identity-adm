@@ -5,6 +5,7 @@ import {UserService} from './user.service';
 import {ClientService} from './client.service';
 import {ScopeService} from './scope.service';
 import {AuditService} from './audit.service';
+import {FormService} from "../basic-ui/form.service";
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import {AuditService} from './audit.service';
   ],
   exports: [],
   declarations: [],
-  providers: [UserService, ClientService, ScopeService, AuditService, ClientService]
+  providers: [UserService, ClientService, ScopeService, AuditService, ClientService, FormService]
 })
 export class ServiceModule {
 }

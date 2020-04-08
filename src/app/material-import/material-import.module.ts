@@ -20,6 +20,8 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
   imports: [
@@ -44,6 +46,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatButtonModule,
     MatSidenavModule,
     MatExpansionModule,
+    MatFormFieldModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMenuModule,
+    MatDatepickerModule,
   ],
   exports: [
     CommonModule,
@@ -62,11 +69,16 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSlideToggleModule,
     MatTabsModule,
     MatSelectModule,
-    MatMenuModule,
     LayoutModule,
     MatToolbarModule,
+    MatButtonModule,
     MatSidenavModule,
     MatExpansionModule,
+    MatFormFieldModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMenuModule,
+    MatDatepickerModule,
   ],
   declarations: []
 })

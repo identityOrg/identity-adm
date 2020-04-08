@@ -21,7 +21,7 @@ import {ScopeComponent} from './pages/scope/scope.component';
 import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
 import {ServiceModule} from './service/service.module';
 import {EditScopeComponent} from './pages/scope/edit-scope/edit-scope.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 import {AddScopeDialogComponent} from './pages/client/add-scope-dialog/add-scope-dialog.component';
 import {AuditComponent} from './pages/audit/audit.component';
@@ -32,13 +32,15 @@ import {DetailUserComponent} from './pages/user/detail-user/detail-user.componen
 import {ListUserComponent} from './pages/user/list-user/list-user.component';
 import {DisplayElementComponent} from './layout/display-element/display-element.component';
 import {NavigationComponent} from './layout/navigation/navigation.component';
-import { ChangePasswordComponent } from './pages/change-password/change-password.component';
-import { ListClientComponent } from './pages/client/list-client/list-client.component';
-import { DetailClientComponent } from './pages/client/detail-client/detail-client.component';
-import { ListScopeComponent } from './pages/scope/list-scope/list-scope.component';
-import { DetailScopeComponent } from './pages/scope/detail-scope/detail-scope.component';
-import { CreateScopeComponent } from './pages/scope/create-scope/create-scope.component';
-import {CommonModule} from '@angular/common';
+import {ChangePasswordComponent} from './pages/change-password/change-password.component';
+import {ListClientComponent} from './pages/client/list-client/list-client.component';
+import {DetailClientComponent} from './pages/client/detail-client/detail-client.component';
+import {ListScopeComponent} from './pages/scope/list-scope/list-scope.component';
+import {DetailScopeComponent} from './pages/scope/detail-scope/detail-scope.component';
+import {CreateScopeComponent} from './pages/scope/create-scope/create-scope.component';
+import {CommonModule} from "@angular/common";
+import {DynamicEditComponent} from "./basic-ui/dynamic-edit/dynamic-edit.component";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -72,6 +74,7 @@ import {CommonModule} from '@angular/common';
     ListScopeComponent,
     DetailScopeComponent,
     CreateScopeComponent,
+    DynamicEditComponent,
   ],
   imports: [
     CommonModule,
@@ -82,7 +85,9 @@ import {CommonModule} from '@angular/common';
     ServiceModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     OAuthModule.forRoot(),
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

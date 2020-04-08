@@ -5,6 +5,9 @@ import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
 import {MatDialog} from '@angular/material/dialog';
 import {UserClaim} from '../../../model/user-claim';
+import {FormService} from "../../../basic-ui/form.service";
+import {EditControl} from "../../../basic-ui/edit-control";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-user',
@@ -14,22 +17,49 @@ import {UserClaim} from '../../../model/user-claim';
 export class EditUserComponent implements OnInit {
 
   @Output() activeUser: EventEmitter<string> = new EventEmitter();
-  editMode = true;
   user = {} as User;
+  controls: EditControl[];
+  formGroup: FormGroup;
 
   constructor(private userService: UserService,
               private activeRoute: ActivatedRoute,
               private router: Router,
+              private formService: FormService,
               private matDialog: MatDialog) {
     this.user.userClaims = {} as UserClaim;
   }
 
   ngOnInit() {
     this.resetUser();
+    this.controls = [
+      new EditControl({name: 'name', label: 'Name', type: 'text', isReadonly: true}),
+      new EditControl({name: 'preferred_username', label: 'Preferred Username', type: 'text'}),
+      new EditControl({name: 'expiryDate', label: 'Expires On', type: 'date', claimName: 'expiry_date'}),
+      new EditControl({
+        name: 'passwordExpiryDate',
+        label: 'Password Expires On',
+        type: 'date',
+        claimName: 'password_expiry_date'
+      }),
+    ];
+    this.formGroup = this.formService.toFormGroup(this.controls);
+  }
+
+  resetUser() {
+    this.activeRoute.paramMap
+      .subscribe(pMap => {
+        this.userService.getUser(pMap.get('username'))
+          .subscribe(data => {
+            this.setUserData(data);
+            this.activeUser.emit(data.username);
+          });
+      });
   }
 
   private setUserData(data: User) {
     this.user = data;
+    console.log(data);
+    this.formGroup.patchValue(data);
   }
 
   save() {
@@ -78,16 +108,5 @@ export class EditUserComponent implements OnInit {
         }
       });
     return false;
-  }
-
-  resetUser() {
-    this.activeRoute.paramMap
-      .subscribe(pMap => {
-        this.userService.getUser(pMap.get('username'))
-          .subscribe(data => {
-            this.setUserData(data);
-            this.activeUser.emit(data.username);
-          });
-      });
   }
 }
