@@ -27,7 +27,7 @@ jobs:
       - name: create fallback 404 file
         run: cp dist/identity-adm/index.html dist/identity-adm/404.html
       - name: create cname file
-        run: echo "admin.prasenjit.net" > dist/identity-admin/CNAME
+        run: echo "admin.prasenjit.net" > dist/identity-adm/CNAME
       - name: GitHub Pages Deployment
         uses: crazy-max/ghaction-github-pages@v1.3.0
         with:
