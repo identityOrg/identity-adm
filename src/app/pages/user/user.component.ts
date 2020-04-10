@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {User} from "../../model/user";
+import {ConfirmDialogComponent} from "../../confirm-dialog/confirm-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-user',
@@ -7,9 +11,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  activeUserName: string;
+  activeUser: User;
 
-  constructor() {
+  constructor(private userService: UserService,
+              private matDialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -17,13 +22,51 @@ export class UserComponent implements OnInit {
 
   subscribeUsername(event) {
     if (event.activeUser) {
-      event.activeUser.subscribe(username => {
-        this.activeUserName = username;
+      event.activeUser.subscribe(user => {
+        this.activeUser = user;
       });
     }
   }
 
   unSubscribeUsername() {
-    this.activeUserName = null;
+    this.activeUser = null;
+  }
+
+  lockUser(): boolean {
+    this.matDialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Please Confirm',
+        confirmation: 'Do you want to lock the user ' + this.activeUser.username + '?'
+      }
+    })
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.userService.lock(this.activeUser.username)
+            .subscribe(data => {
+              this.activeUser = data;
+            });
+        }
+      });
+    return false;
+  }
+
+  enableUser(): boolean {
+    this.matDialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Please Confirm',
+        confirmation: 'Do you want to enable the user ' + this.activeUser.username + '?'
+      }
+    })
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.userService.enable(this.activeUser.username, result)
+            .subscribe(data => {
+              this.activeUser = data;
+            });
+        }
+      });
+    return false;
   }
 }

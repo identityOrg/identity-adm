@@ -68,11 +68,5 @@
     <button mat-icon-button color="primary" (click)="save()">
       <mat-icon>save</mat-icon>
     </button>
-    <button mat-icon-button color="warn" *ngIf="user.active" (click)="lockUser()">
-      <mat-icon>lock</mat-icon>
-    </button>
-    <button mat-icon-button color="primary" *ngIf="!user.active" (click)="enableUser()">
-      <mat-icon>lock_open</mat-icon>
-    </button>
   </mat-card-actions>
 </mat-card>

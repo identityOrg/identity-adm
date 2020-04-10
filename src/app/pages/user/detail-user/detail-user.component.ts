@@ -14,7 +14,7 @@ import {Claim} from '../../../model/claim';
 })
 export class DetailUserComponent implements OnInit {
 
-  @Output() activeUser: EventEmitter<string> = new EventEmitter();
+  @Output() activeUser: EventEmitter<User> = new EventEmitter();
   user = {} as User;
   customClaims: Array<Claim> = [];
 
@@ -31,7 +31,7 @@ export class DetailUserComponent implements OnInit {
         this.userService.getUser(pMap.get('username'))
           .subscribe(data => {
             this.user = data;
-            this.activeUser.emit(data.username);
+            this.activeUser.emit(data);
           });
       });
     this.claimService.listClaims({custom: true} as Claim)

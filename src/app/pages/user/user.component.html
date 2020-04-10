@@ -1,7 +1,13 @@
 <mat-toolbar>
   <span>User Management</span>
   <span fxFlex="1 1 auto"></span>
-  <button *ngIf="activeUserName" mat-icon-button color="primary" [routerLink]="['/user', 'edit', activeUserName]">
+  <button mat-icon-button color="warn" *ngIf="activeUser && activeUser.active" (click)="lockUser()">
+    <mat-icon>lock</mat-icon>
+  </button>
+  <button mat-icon-button color="primary" *ngIf="activeUser && !activeUser.active" (click)="enableUser()">
+    <mat-icon>lock_open</mat-icon>
+  </button>
+  <button *ngIf="activeUser" mat-icon-button color="primary" [routerLink]="['/user', 'edit', activeUser.username]">
     <mat-icon aria-label="Create new user">edit</mat-icon>
   </button>
   <button mat-icon-button color="primary" routerLink="/user">

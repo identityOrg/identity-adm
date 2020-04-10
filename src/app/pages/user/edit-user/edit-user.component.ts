@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ConfirmDialogComponent} from '../../../confirm-dialog/confirm-dialog.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
@@ -16,7 +15,7 @@ import {FormConfig} from "./user-form-config";
 })
 export class EditUserComponent implements OnInit {
 
-  @Output() activeUser: EventEmitter<string> = new EventEmitter();
+  @Output() activeUser: EventEmitter<User> = new EventEmitter();
   controls: EditControl[];
   formGroup: FormGroup;
   user: User = {} as User;
@@ -40,7 +39,7 @@ export class EditUserComponent implements OnInit {
         this.userService.getUser(pMap.get('username'))
           .subscribe(data => {
             this.setUserData(data);
-            this.activeUser.emit(data.username);
+            this.activeUser.emit(data);
           });
       });
   }
@@ -58,44 +57,6 @@ export class EditUserComponent implements OnInit {
           });
         });
     }
-    return false;
-  }
-
-  lockUser(): boolean {
-    this.matDialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'Please Confirm',
-        confirmation: 'Do you want to lock the user ' + this.user.username + '?'
-      }
-    })
-      .afterClosed()
-      .subscribe(result => {
-        if (result) {
-          this.userService.lock(this.user.username)
-            .subscribe(data => {
-              this.setUserData(data);
-            });
-        }
-      });
-    return false;
-  }
-
-  enableUser(): boolean {
-    this.matDialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'Please Confirm',
-        confirmation: 'Do you want to enable the user ' + this.user.username + '?'
-      }
-    })
-      .afterClosed()
-      .subscribe(result => {
-        if (result) {
-          this.userService.enable(this.user.username, result)
-            .subscribe(data => {
-              this.setUserData(data);
-            });
-        }
-      });
     return false;
   }
 }
