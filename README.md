@@ -1,3 +1,5 @@
+![Node.js CD](https://github.com/identityOrg/identity-adm/workflows/Node.js%20CD/badge.svg)
+
 # IdentityAdm
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
