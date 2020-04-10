@@ -14,7 +14,19 @@
             General Information
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-dynamic-edit [formGroup]="formGroup" *ngFor="let ctrl of controls" [editControl]="ctrl"></app-dynamic-edit>
+        <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'general')"
+                          [editControl]="ctrl">
+        </app-dynamic-edit>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Profile Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'profile')"
+                          [editControl]="ctrl">
+        </app-dynamic-edit>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>
@@ -36,4 +48,4 @@
     </button>
   </mat-card-actions>
 </mat-card>
-{{formGroup.value|json}}
+<pre>{{formGroup.value|json}}</pre>

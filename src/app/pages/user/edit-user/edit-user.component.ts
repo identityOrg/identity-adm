@@ -8,6 +8,7 @@ import {UserClaim} from '../../../model/user-claim';
 import {FormService} from "../../../basic-ui/form.service";
 import {EditControl} from "../../../basic-ui/edit-control";
 import {FormGroup} from "@angular/forms";
+import {FormConfig} from "./user-form-config";
 
 @Component({
   selector: 'app-edit-user',
@@ -20,29 +21,21 @@ export class EditUserComponent implements OnInit {
   user = {} as User;
   controls: EditControl[];
   formGroup: FormGroup;
+  profileGroup: FormGroup;
 
   constructor(private userService: UserService,
               private activeRoute: ActivatedRoute,
               private router: Router,
-              private formService: FormService,
+              public formService: FormService,
               private matDialog: MatDialog) {
     this.user.userClaims = {} as UserClaim;
   }
 
   ngOnInit() {
     this.resetUser();
-    this.controls = [
-      new EditControl({name: 'name', label: 'Name', type: 'text', isReadonly: true}),
-      new EditControl({name: 'preferred_username', label: 'Preferred Username', type: 'text'}),
-      new EditControl({name: 'expiryDate', label: 'Expires On', type: 'date', claimName: 'expiry_date'}),
-      new EditControl({
-        name: 'passwordExpiryDate',
-        label: 'Password Expires On',
-        type: 'date',
-        claimName: 'password_expiry_date'
-      }),
-    ];
+    this.controls = FormConfig;
     this.formGroup = this.formService.toFormGroup(this.controls);
+    this.profileGroup = this.formGroup.get('userClaims') as FormGroup;
   }
 
   resetUser() {

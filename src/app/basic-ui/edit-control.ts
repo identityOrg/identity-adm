@@ -1,3 +1,5 @@
+import {FormGroup} from "@angular/forms";
+
 export class EditControl {
   name: string;
   type: string;
@@ -10,6 +12,8 @@ export class EditControl {
   children: Array<EditControl>;
   hint: string;
   claimName: string;
+  groupName: string;
+  formGroup: FormGroup;
 
   constructor(option: {
     name?: string;
@@ -23,6 +27,7 @@ export class EditControl {
     children?: Array<EditControl>;
     hint?: string;
     claimName?: string;
+    groupName?: string;
   } = {}) {
     this.name = option.name || '';
     this.type = option.type || '';
@@ -35,5 +40,6 @@ export class EditControl {
     this.children = option.children;
     this.hint = option.hint;
     this.claimName = option.claimName;
+    this.groupName = option.groupName || '';
   }
 }

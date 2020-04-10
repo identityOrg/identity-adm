@@ -9,7 +9,6 @@ import {EditControl} from "../edit-control";
 })
 export class DynamicEditComponent implements OnInit {
 
-  @Input() formGroup: FormGroup;
   @Input() editControl: EditControl;
 
   constructor() {

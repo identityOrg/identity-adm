@@ -1,4 +1,4 @@
-<div [ngSwitch]="editControl.type" [formGroup]="formGroup" class="full-width">
+<div [ngSwitch]="editControl.type" [formGroup]="editControl.formGroup" class="full-width">
   <mat-form-field *ngSwitchCase="'text'" class="full-width">
     <mat-label>{{editControl.label}}</mat-label>
     <input matInput [formControlName]="editControl.name" [readonly]="editControl.isReadonly">

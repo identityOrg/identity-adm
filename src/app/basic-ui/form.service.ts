@@ -24,7 +24,22 @@ export class FormService {
       }
 
     });
-    return new FormGroup(group);
+    let formGroup = this.formBuilder.group(group);//  new FormGroup(group);
+    editControls.forEach(ctrl => ctrl.formGroup = formGroup);
+    return formGroup;
+  }
+
+  groupedControl(controls: EditControl[], groupName: string, filteredControl: EditControl[] = []): EditControl[] {
+    controls.forEach(ctrl => {
+      if (ctrl.type === 'group') {
+        this.groupedControl(ctrl.children, groupName, filteredControl);
+      } else if (ctrl.type === 'array') {
+
+      } else if (ctrl.groupName === groupName) {
+        filteredControl.push(ctrl)
+      }
+    });
+    return filteredControl;
   }
 
   private static buildValidator(editControl: EditControl): any[] {
