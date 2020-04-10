@@ -148,16 +148,6 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayout.gt-xs="row wrap">
-          <app-display-element displayName="Phone Number"
-                               attrName="phone_number"
-                               [value]="user.userClaims.phone_number"
-                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
-          </app-display-element>
-          <app-display-element displayName="Phone Number Verified"
-                               attrName="phone_number_verified"
-                               [value]="user.userClaims.phone_number_verified"
-                               fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
-          </app-display-element>
           <app-display-element displayName="Formatted Address"
                                attrName="address.formatted"
                                [value]="user.userClaims.address.formatted"

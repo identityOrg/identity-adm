@@ -14,9 +14,11 @@
             General Information
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'general')"
-                          [editControl]="ctrl">
-        </app-dynamic-edit>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'general')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
       </mat-expansion-panel>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -24,9 +26,35 @@
             Profile Information
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'profile')"
-                          [editControl]="ctrl">
-        </app-dynamic-edit>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'profile')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Address Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'address')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Communication Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'communication')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>

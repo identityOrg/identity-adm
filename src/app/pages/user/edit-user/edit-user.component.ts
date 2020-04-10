@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
 import {MatDialog} from '@angular/material/dialog';
-import {UserClaim} from '../../../model/user-claim';
 import {FormService} from "../../../basic-ui/form.service";
 import {EditControl} from "../../../basic-ui/edit-control";
 import {FormGroup} from "@angular/forms";
@@ -18,24 +17,21 @@ import {FormConfig} from "./user-form-config";
 export class EditUserComponent implements OnInit {
 
   @Output() activeUser: EventEmitter<string> = new EventEmitter();
-  user = {} as User;
   controls: EditControl[];
   formGroup: FormGroup;
-  profileGroup: FormGroup;
+  user: User = {} as User;
 
   constructor(private userService: UserService,
               private activeRoute: ActivatedRoute,
               private router: Router,
               public formService: FormService,
               private matDialog: MatDialog) {
-    this.user.userClaims = {} as UserClaim;
   }
 
   ngOnInit() {
     this.resetUser();
     this.controls = FormConfig;
     this.formGroup = this.formService.toFormGroup(this.controls);
-    this.profileGroup = this.formGroup.get('userClaims') as FormGroup;
   }
 
   resetUser() {
@@ -50,18 +46,18 @@ export class EditUserComponent implements OnInit {
   }
 
   private setUserData(data: User) {
-    this.user = data;
-    console.log(data);
     this.formGroup.patchValue(data);
+    this.user = data;
   }
 
-  save() {
-    this.userService.edit(this.user)
-      .subscribe(data => {
-        this.setUserData(data);
-        this.router.navigateByUrl('/user/detail/' + data.username).then(() => {
+  save(): boolean {
+    if (this.formGroup.valid) {
+      this.userService.edit(this.formGroup.value)
+        .subscribe(data => {
+          this.router.navigateByUrl('/user/detail/' + data.username).then(() => {
+          });
         });
-      });
+    }
     return false;
   }
 
