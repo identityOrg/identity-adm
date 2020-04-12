@@ -41,6 +41,11 @@ import {CreateScopeComponent} from './pages/scope/create-scope/create-scope.comp
 import {CommonModule} from "@angular/common";
 import {DynamicEditComponent} from "./basic-ui/dynamic-edit/dynamic-edit.component";
 import {MatNativeDateModule} from "@angular/material/core";
+import { ClaimComponent } from './pages/claim/claim.component';
+import { DetailClaimComponent } from './pages/claim/detail-claim/detail-claim.component';
+import { EditClaimComponent } from './pages/claim/edit-claim/edit-claim.component';
+import { ListClaimComponent } from './pages/claim/list-claim/list-claim.component';
+import { CreateClaimComponent } from './pages/claim/create-claim/create-claim.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +80,11 @@ import {MatNativeDateModule} from "@angular/material/core";
     DetailScopeComponent,
     CreateScopeComponent,
     DynamicEditComponent,
+    ClaimComponent,
+    DetailClaimComponent,
+    EditClaimComponent,
+    ListClaimComponent,
+    CreateClaimComponent,
   ],
   imports: [
     CommonModule,

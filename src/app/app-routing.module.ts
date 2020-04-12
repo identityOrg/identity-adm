@@ -23,6 +23,11 @@ import {ListScopeComponent} from './pages/scope/list-scope/list-scope.component'
 import {EditScopeComponent} from './pages/scope/edit-scope/edit-scope.component';
 import {DetailScopeComponent} from './pages/scope/detail-scope/detail-scope.component';
 import {CreateScopeComponent} from './pages/scope/create-scope/create-scope.component';
+import {ClaimComponent} from "./pages/claim/claim.component";
+import {ListClaimComponent} from "./pages/claim/list-claim/list-claim.component";
+import {CreateClaimComponent} from "./pages/claim/create-claim/create-claim.component";
+import {EditClaimComponent} from "./pages/claim/edit-claim/edit-claim.component";
+import {DetailClaimComponent} from "./pages/claim/detail-claim/detail-claim.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -49,6 +54,14 @@ const routes: Routes = [
       {path: 'create', component: CreateScopeComponent, canActivate: [LoginGuard]},
       {path: 'edit/:scopeId', component: EditScopeComponent, canActivate: [LoginGuard]},
       {path: 'detail/:scopeId', component: DetailScopeComponent, canActivate: [LoginGuard]}
+    ]
+  },
+  {
+    path: 'claim', component: ClaimComponent, children: [
+      {path: '', pathMatch: 'full', component: ListClaimComponent, canActivate: [LoginGuard]},
+      {path: 'create', component: CreateClaimComponent, canActivate: [LoginGuard]},
+      {path: 'edit/:claimId', component: EditClaimComponent, canActivate: [LoginGuard]},
+      {path: 'detail/:claimId', component: DetailClaimComponent, canActivate: [LoginGuard]}
     ]
   },
   {path: 'audit', component: AuditComponent, canActivate: [LoginGuard]},

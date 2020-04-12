@@ -4,6 +4,7 @@ import {OAuthService} from 'angular-oauth2-oidc';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {Claim} from '../model/claim';
+import {User} from "../model/user";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,15 @@ export class ClaimService {
         Authorization: this.oAuthService.authorizationHeader(),
       },
       params: param,
+      observe: 'body'
+    });
+  }
+
+  getClaim(claimId: string): Observable<Claim> {
+    return this.http.get<Claim>(environment.apiBase + '/api/claim/' + claimId, {
+      headers: {
+        Authorization: this.oAuthService.authorizationHeader(),
+      },
       observe: 'body'
     });
   }

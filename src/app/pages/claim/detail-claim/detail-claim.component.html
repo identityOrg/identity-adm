@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span>Claim "<b>{{claim.standardAttribute}}</b>"</span>
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="claim.custom">Custom Claim</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!claim.custom">Standard Claim</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayout.gt-xs="row wrap">
+      <app-display-element displayName="Standard Attribute"
+                           [value]="claim.standardAttribute"
+                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      </app-display-element>
+      <app-display-element displayName="Description"
+                           [value]="claim.description"
+                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      </app-display-element>
+      <app-display-element displayName="Claim Type"
+                           [value]="claim.claimType"
+                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      </app-display-element>
+      <app-display-element displayName="Custom Attribute"
+                           yesNo="true"
+                           [value]="claim.custom"
+                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      </app-display-element>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button color="primary" [routerLink]="['/claim', 'edit', claim.id]">
+      <mat-icon aria-label="Go back to detail">edit</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
