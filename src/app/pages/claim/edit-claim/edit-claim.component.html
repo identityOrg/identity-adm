@@ -7,24 +7,10 @@
     <mat-card-subtitle *ngIf="!claim.custom">Standard Claim</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <div fxLayout="column" fxLayout.gt-xs="row wrap">
-      <app-display-element displayName="Standard Attribute"
-                           [value]="claim.standardAttribute"
-                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
-      </app-display-element>
-      <app-display-element displayName="Description"
-                           [value]="claim.description"
-                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
-      </app-display-element>
-      <app-display-element displayName="Claim Type"
-                           [value]="claim.claimType"
-                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
-      </app-display-element>
-      <app-display-element displayName="Custom Attribute"
-                           yesNo="true"
-                           [value]="claim.custom"
-                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
-      </app-display-element>
+    <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+      <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'general')"
+                        [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      </app-dynamic-edit>
     </div>
   </mat-card-content>
   <mat-card-actions>

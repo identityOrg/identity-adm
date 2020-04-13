@@ -28,7 +28,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button color="primary" [routerLink]="['/claim', 'edit', claim.id]">
+    <button mat-icon-button *ngIf="claim.custom" color="primary" [routerLink]="['/claim', 'edit', claim.id]">
       <mat-icon aria-label="Go back to detail">edit</mat-icon>
     </button>
   </mat-card-actions>
