@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {EditControl} from "../../../basic-ui/edit-control";
+import {EditControl} from "../../../model/edit-control";
 import {Claim} from "../../../model/claim";
 import {FormGroup} from "@angular/forms";
 import {ClaimService} from "../../../service/claim.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormService} from "../../../basic-ui/form.service";
+import {FormService} from "../../../service/form.service";
 
 @Component({
   selector: 'app-create-claim',

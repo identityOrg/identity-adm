@@ -2,10 +2,10 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
-import {EditControl} from "../../../basic-ui/edit-control";
+import {EditControl} from "../../../model/edit-control";
 import {FormGroup} from "@angular/forms";
 import {ClaimService} from "../../../service/claim.service";
-import {FormService} from "../../../basic-ui/form.service";
+import {FormService} from "../../../service/form.service";
 import {Claim} from "../../../model/claim";
 import {FormConfig} from "../edit-user/user-form-config";
 

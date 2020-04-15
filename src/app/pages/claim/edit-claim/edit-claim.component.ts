@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Claim} from "../../../model/claim";
 import {ClaimService} from "../../../service/claim.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {EditControl} from "../../../basic-ui/edit-control";
-import {FormService} from "../../../basic-ui/form.service";
+import {EditControl} from "../../../model/edit-control";
+import {FormService} from "../../../service/form.service";
 import {FormGroup} from "@angular/forms";
 
 @Component({

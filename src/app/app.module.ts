@@ -39,7 +39,7 @@ import {ListScopeComponent} from './pages/scope/list-scope/list-scope.component'
 import {DetailScopeComponent} from './pages/scope/detail-scope/detail-scope.component';
 import {CreateScopeComponent} from './pages/scope/create-scope/create-scope.component';
 import {CommonModule} from "@angular/common";
-import {DynamicEditComponent} from "./basic-ui/dynamic-edit/dynamic-edit.component";
+import {DynamicEditComponent} from "./layout/dynamic-edit/dynamic-edit.component";
 import {MatNativeDateModule} from "@angular/material/core";
 import { ClaimComponent } from './pages/claim/claim.component';
 import { DetailClaimComponent } from './pages/claim/detail-claim/detail-claim.component';

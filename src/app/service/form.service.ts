@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {EditControl} from "./edit-control";
+import {EditControl} from "../model/edit-control";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Injectable({
