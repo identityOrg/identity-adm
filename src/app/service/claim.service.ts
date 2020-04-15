@@ -52,4 +52,15 @@ export class ClaimService {
       observe: 'body'
     });
   }
+
+  create(claim: Claim): Observable<Claim> {
+    return this.http.post<Claim>(environment.apiBase + '/api/claim',
+      claim,
+      {
+        headers: {
+          Authorization: this.oAuthService.authorizationHeader(),
+        },
+        observe: 'body'
+      });
+  }
 }

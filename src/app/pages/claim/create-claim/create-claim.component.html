@@ -1,1 +1,23 @@
-<p>create-claim works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span>Create new Claim</span>
+    </mat-card-title>
+    <mat-card-subtitle>New custom claim</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+      <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'general')"
+                        [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      </app-dynamic-edit>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button color="warn" routerLink="/claim">
+      <mat-icon aria-label="List Claim">cancel</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
