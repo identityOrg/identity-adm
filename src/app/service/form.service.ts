@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {EditControl} from "../model/edit-control";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Claim} from "../model/claim";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,22 @@ export class FormService {
     let formGroup = this.formBuilder.group(group);//  new FormGroup(group);
     editControls.forEach(ctrl => ctrl.formGroup = formGroup);
     return formGroup;
+  }
+
+  addCustomUserAttributes(config: EditControl[], customAttributes: Claim[]): EditControl[] {
+    if (customAttributes && customAttributes.length > 0) {
+      let customElements: EditControl[] = customAttributes.map(claim => new EditControl({
+        name: claim.standardAttribute,
+        label: claim.description,
+        type: 'text',
+        groupName: 'custom'
+      }));
+      let userClaims = config.find(elm => elm.name === 'userClaims');
+      if (userClaims) {
+        userClaims.children.push(...customElements);
+      }
+    }
+    return config;
   }
 
   groupedControl(controls: EditControl[], groupName: string, filteredControl: EditControl[] = []): EditControl[] {

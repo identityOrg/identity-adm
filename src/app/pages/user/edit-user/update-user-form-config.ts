@@ -1,6 +1,6 @@
 import {EditControl} from "../../../model/edit-control";
 
-export const FormConfig = [
+export const UpdateFormConfig = [
   new EditControl({name: 'username', label: 'Username', type: 'text', groupName: 'none'}),
   new EditControl({name: 'locked', label: 'Locked', type: 'text', groupName: 'none'}),
   new EditControl({name: 'active', label: 'Active', type: 'text', groupName: 'none'}),

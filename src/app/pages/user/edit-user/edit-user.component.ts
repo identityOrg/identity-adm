@@ -5,7 +5,7 @@ import {UserService} from '../../../service/user.service';
 import {FormService} from "../../../service/form.service";
 import {EditControl} from "../../../model/edit-control";
 import {FormGroup} from "@angular/forms";
-import {FormConfig} from "./user-form-config";
+import {UpdateFormConfig} from "./update-user-form-config";
 import {Claim} from "../../../model/claim";
 import {ClaimService} from "../../../service/claim.service";
 
@@ -31,20 +31,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.claimService.listClaims({custom: true, claimType: 'NORMAL'} as Claim)
       .subscribe(data => {
-        FormConfig.forEach(ctrl => {
-          if (ctrl?.name === 'userClaims') {
-            data.forEach(dt => {
-              let childCtrl = new EditControl({
-                name: dt.standardAttribute,
-                label: dt.description,
-                type: 'text',
-                groupName: 'custom'
-              });
-              ctrl.children.push(childCtrl);
-            });
-          }
-        });
-        this.controls = FormConfig;
+        this.controls = this.formService.addCustomUserAttributes(UpdateFormConfig, data);
         this.formGroup = this.formService.toFormGroup(this.controls);
         this.resetUser();
       });

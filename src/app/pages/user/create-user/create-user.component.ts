@@ -7,7 +7,7 @@ import {FormGroup} from "@angular/forms";
 import {ClaimService} from "../../../service/claim.service";
 import {FormService} from "../../../service/form.service";
 import {Claim} from "../../../model/claim";
-import {FormConfig} from "../edit-user/user-form-config";
+import {CreateFormConfig} from "./create-user-form-config";
 
 @Component({
   selector: 'app-create-user',
@@ -31,23 +31,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit() {
     this.claimService.listClaims({custom: true, claimType: 'NORMAL'} as Claim)
       .subscribe(data => {
-        FormConfig.forEach(ctrl => {
-          if (ctrl?.name === 'username'){
-            ctrl.groupName = 'general';
-          }
-          if (ctrl?.name === 'userClaims') {
-            data.forEach(dt => {
-              let childCtrl = new EditControl({
-                name: dt.standardAttribute,
-                label: dt.description,
-                type: 'text',
-                groupName: 'custom'
-              });
-              ctrl.children.push(childCtrl);
-            });
-          }
-        });
-        this.controls = FormConfig;
+        this.controls = this.formService.addCustomUserAttributes(CreateFormConfig, data);
         this.formGroup = this.formService.toFormGroup(this.controls);
       });
   }
