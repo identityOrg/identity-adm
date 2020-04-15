@@ -2,11 +2,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
-import {MatDialog} from '@angular/material/dialog';
 import {FormService} from "../../../basic-ui/form.service";
 import {EditControl} from "../../../basic-ui/edit-control";
 import {FormGroup} from "@angular/forms";
 import {FormConfig} from "./user-form-config";
+import {Claim} from "../../../model/claim";
+import {ClaimService} from "../../../service/claim.service";
 
 @Component({
   selector: 'app-edit-user',
@@ -16,21 +17,37 @@ import {FormConfig} from "./user-form-config";
 export class EditUserComponent implements OnInit {
 
   @Output() activeUser: EventEmitter<User> = new EventEmitter();
-  controls: EditControl[];
+  controls: EditControl[] = [];
   formGroup: FormGroup;
   user: User = {} as User;
 
   constructor(private userService: UserService,
               private activeRoute: ActivatedRoute,
               private router: Router,
-              public formService: FormService,
-              private matDialog: MatDialog) {
+              private claimService: ClaimService,
+              public formService: FormService) {
   }
 
   ngOnInit() {
-    this.resetUser();
-    this.controls = FormConfig;
-    this.formGroup = this.formService.toFormGroup(this.controls);
+    this.claimService.listClaims({custom: true, claimType: 'NORMAL'} as Claim)
+      .subscribe(data => {
+        FormConfig.forEach(ctrl => {
+          if (ctrl?.name === 'userClaims') {
+            data.forEach(dt => {
+              let childCtrl = new EditControl({
+                name: dt.standardAttribute,
+                label: dt.description,
+                type: 'text',
+                groupName: 'custom'
+              });
+              ctrl.children.push(childCtrl);
+            });
+          }
+        });
+        this.controls = FormConfig;
+        this.formGroup = this.formService.toFormGroup(this.controls);
+        this.resetUser();
+      });
   }
 
   resetUser() {

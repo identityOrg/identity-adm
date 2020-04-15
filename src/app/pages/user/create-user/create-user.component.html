@@ -1,46 +1,85 @@
-<div class="card" style="width: 100%">
-  <div class="card-body">
-    <h5 class="card-title">{{user.username||'New User'}} <span class="dot-inactive"></span></h5>
-    <p class="card-text">Create a new User</p>
-  </div>
-  <mat-tab-group>
-    <mat-tab label="General">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Username" [(ngModel)]="user.username">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="First Name" [(ngModel)]="user.userClaims.firstName">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Last Name" [(ngModel)]="user.userClaims.lastName">
-          </mat-form-field>
-        </li>
-      </ul>
-    </mat-tab>
-    <mat-tab label="Advanced">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <mat-slide-toggle [(ngModel)]="user.admin">
-            {{user.admin?'Admin':'Not an Admin'}}
-          </mat-slide-toggle>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Expiry Date" type="datetime-local"
-                   [(ngModel)]="user.expiryDate">
-          </mat-form-field>
-        </li>
-      </ul>
-    </mat-tab>
-  </mat-tab-group>
-  <div class="card-body">
-    <a href="#" class="card-link" [routerLink]="['/user']">Cancel</a>
-    <a href="#" class="card-link" (click)="save()">Save User</a>
-  </div>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span>Create new user</span>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            General Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'general')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Profile Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'profile')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Address Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'address')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Communication Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'communication')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Custom Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'custom')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button color="warn" [routerLink]="['/user', 'detail', user.username]">
+      <mat-icon>cancel</mat-icon>
+    </button>
+    <button mat-icon-button color="accent" (click)="resetUser()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+<pre>
+  {{formGroup?.value|json}}
+</pre>

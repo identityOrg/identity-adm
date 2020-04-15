@@ -56,6 +56,18 @@
           </app-dynamic-edit>
         </div>
       </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Custom Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
+          <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'custom')"
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+          </app-dynamic-edit>
+        </div>
+      </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>
   <mat-card-actions>
