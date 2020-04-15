@@ -1,7 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ScopeService} from '../../../service/scope.service';
 import {Scope} from '../../../model/scope';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ActivatedRoute} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-edit-scope',
@@ -10,49 +11,35 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 })
 export class EditScopeComponent implements OnInit {
 
-  title: string;
+  scope: Scope = {} as Scope;
 
-  scope: Scope = {scopeId: null, scopeName: null};
-
-  scopeId: string;
-  edit = false;
-
-  constructor(private dialogRef: MatDialogRef<EditScopeComponent>,
-              private scopeService: ScopeService,
-              @Inject(MAT_DIALOG_DATA) data) {
-    this.scopeId = data.scopeId;
-    this.edit = data.edit;
-    if (this.edit) {
-      this.title = 'Edit Scope';
-    } else {
-      this.title = 'Create Scope';
-    }
+  constructor(private scopeService: ScopeService,
+              private activatedRoute: ActivatedRoute,
+              private snackBar: MatSnackBar) {
   }
 
-  ngOnInit() {
-    if (this.edit) {
-      this.scopeService.getScope(this.scopeId).subscribe(s => {
-        this.scope = s;
+  ngOnInit(): void {
+    this.activatedRoute.paramMap
+      .subscribe(pMap => {
+        let scopeId = pMap.get('scopeId');
+        this.scopeService.getScope(scopeId)
+          .subscribe(scope => {
+            this.scope = scope;
+          });
       });
-    }
   }
 
-  close() {
-    this.dialogRef.close(false);
+  reset() {
+
   }
 
   save() {
-    if (this.edit) {
-      this.scopeService.update(this.scope)
-        .subscribe(s => {
-          this.dialogRef.close(true);
+    this.scopeService.update(this.scope)
+      .subscribe((scope) => {
+        this.scope = scope;
+        this.snackBar.open('Scope ' + scope.scopeId + ' updated!', 'Saved!', {
+          duration: 2000,
         });
-    } else {
-      this.scopeService.create(this.scope)
-        .subscribe(s => {
-          this.dialogRef.close(true);
-        });
-    }
+      });
   }
-
 }

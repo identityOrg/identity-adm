@@ -22,6 +22,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MatInputModule,
     MatMenuModule,
     MatDatepickerModule,
+    MatSnackBarModule,
   ],
   exports: [
     CommonModule,
@@ -79,6 +81,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MatInputModule,
     MatMenuModule,
     MatDatepickerModule,
+    MatSnackBarModule,
   ],
   declarations: []
 })

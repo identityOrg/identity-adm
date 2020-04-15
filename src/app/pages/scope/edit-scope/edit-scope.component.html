@@ -1,17 +1,29 @@
-<h2 mat-dialog-title>{{title}}</h2>
-<mat-dialog-content>
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Scope ID" [disabled]="edit" [(ngModel)]="scope.scopeId" required>
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Scope Name" [(ngModel)]="scope.scopeName" required>
-  </mat-form-field>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-flat-button color="warn" (click)="close()">
-    Cancel
-  </button>
-  <button mat-flat-button color="primary" (click)="save()">
-    Save
-  </button>
-</mat-dialog-actions>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span>Scope "<b>{{scope.scopeId}}</b>"</span>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column" fxLayout.gt-xs="row wrap">
+      <mat-form-field class="full-width">
+        <mat-label>Scope Id</mat-label>
+        <input matInput [(ngModel)]="scope.scopeId" readonly>
+        <mat-hint>Scope id is used to request the scope</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Scope Name</mat-label>
+        <input matInput [(ngModel)]="scope.scopeName">
+        <mat-hint>Display name of scope</mat-hint>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button color="accent" (click)="reset()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
