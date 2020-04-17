@@ -75,4 +75,13 @@ export class ScopeService {
       observe: 'body'
     });
   }
+
+  delete(scopeId: string): Observable<any> {
+    return this.http.delete(environment.apiBase + '/api/scope/' + scopeId, {
+      headers: {
+        Authorization: this.oAuthService.authorizationHeader(),
+      },
+      observe: 'body'
+    });
+  }
 }

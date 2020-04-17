@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ScopeService} from '../../../service/scope.service';
 import {Scope} from '../../../model/scope';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MediaObserver} from '@angular/flex-layout';
 import {MatTableDataSource} from '@angular/material/table';
@@ -26,7 +26,8 @@ export class EditScopeComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private snackBar: MatSnackBar,
               private mediaObserver: MediaObserver,
-              private matDialog: MatDialog) {
+              private matDialog: MatDialog,
+              private router: Router) {
     this.scope = {} as Scope;
     this.scope.attachedClaims = [];
   }
@@ -96,6 +97,14 @@ export class EditScopeComponent implements OnInit {
       .subscribe(scope => {
         this.setData(scope);
         this.showNotification(scope);
+      });
+  }
+
+  delete() {
+    this.scopeService.delete(this.scope.scopeId)
+      .subscribe(() => {
+        this.router.navigateByUrl('/scope').then(() => {
+        });
       });
   }
 }

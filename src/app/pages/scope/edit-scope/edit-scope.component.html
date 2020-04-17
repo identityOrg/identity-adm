@@ -57,6 +57,9 @@
     <button mat-icon-button color="accent" (click)="reset()">
       <mat-icon>refresh</mat-icon>
     </button>
+    <button mat-icon-button color="warn" (click)="delete()" *ngIf="scope.custom">
+      <mat-icon>delete</mat-icon>
+    </button>
     <button mat-icon-button color="primary" (click)="save()">
       <mat-icon>save</mat-icon>
     </button>
