@@ -46,6 +46,7 @@ import { DetailClaimComponent } from './pages/claim/detail-claim/detail-claim.co
 import { EditClaimComponent } from './pages/claim/edit-claim/edit-claim.component';
 import { ListClaimComponent } from './pages/claim/list-claim/list-claim.component';
 import { CreateClaimComponent } from './pages/claim/create-claim/create-claim.component';
+import { AddClaimDialogComponent } from './pages/scope/add-claim-dialog/add-claim-dialog.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { CreateClaimComponent } from './pages/claim/create-claim/create-claim.co
     EditClaimComponent,
     ListClaimComponent,
     CreateClaimComponent,
+    AddClaimDialogComponent,
   ],
   imports: [
     CommonModule,

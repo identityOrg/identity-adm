@@ -14,7 +14,6 @@ export class ListUserComponent implements OnInit {
 
   displayedColumns = ['username', 'active', 'locked', 'creationDate', 'passwordExpiryDate', 'admin'];
   dataSource: MatTableDataSource<User> = null;
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private userService: UserService, private mediaObserver: MediaObserver) {

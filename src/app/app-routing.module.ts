@@ -21,13 +21,12 @@ import {ListClientComponent} from './pages/client/list-client/list-client.compon
 import {DetailClientComponent} from './pages/client/detail-client/detail-client.component';
 import {ListScopeComponent} from './pages/scope/list-scope/list-scope.component';
 import {EditScopeComponent} from './pages/scope/edit-scope/edit-scope.component';
-import {DetailScopeComponent} from './pages/scope/detail-scope/detail-scope.component';
 import {CreateScopeComponent} from './pages/scope/create-scope/create-scope.component';
-import {ClaimComponent} from "./pages/claim/claim.component";
-import {ListClaimComponent} from "./pages/claim/list-claim/list-claim.component";
-import {CreateClaimComponent} from "./pages/claim/create-claim/create-claim.component";
-import {EditClaimComponent} from "./pages/claim/edit-claim/edit-claim.component";
-import {DetailClaimComponent} from "./pages/claim/detail-claim/detail-claim.component";
+import {ClaimComponent} from './pages/claim/claim.component';
+import {ListClaimComponent} from './pages/claim/list-claim/list-claim.component';
+import {CreateClaimComponent} from './pages/claim/create-claim/create-claim.component';
+import {EditClaimComponent} from './pages/claim/edit-claim/edit-claim.component';
+import {DetailClaimComponent} from './pages/claim/detail-claim/detail-claim.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -52,8 +51,7 @@ const routes: Routes = [
     path: 'scope', component: ScopeComponent, children: [
       {path: '', pathMatch: 'full', component: ListScopeComponent, canActivate: [LoginGuard]},
       {path: 'create', component: CreateScopeComponent, canActivate: [LoginGuard]},
-      {path: 'edit/:scopeId', component: EditScopeComponent, canActivate: [LoginGuard]},
-      {path: 'detail/:scopeId', component: DetailScopeComponent, canActivate: [LoginGuard]}
+      {path: 'edit/:scopeId', component: EditScopeComponent, canActivate: [LoginGuard]}
     ]
   },
   {

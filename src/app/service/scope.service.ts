@@ -49,6 +49,24 @@ export class ScopeService {
     });
   }
 
+  addClaim(scopeId: string, claimId: string): Observable<Scope> {
+    return this.http.patch<Scope>(environment.apiBase + '/api/scope/' + scopeId + '/add-claim/' + claimId, null, {
+      headers: {
+        Authorization: this.oAuthService.authorizationHeader(),
+      },
+      observe: 'body'
+    });
+  }
+
+  removeClaim(scopeId: string, claimId: string): Observable<Scope> {
+    return this.http.patch<Scope>(environment.apiBase + '/api/scope/' + scopeId + '/remove-claim/' + claimId, null, {
+      headers: {
+        Authorization: this.oAuthService.authorizationHeader(),
+      },
+      observe: 'body'
+    });
+  }
+
   create(scope: Scope): Observable<Scope> {
     return this.http.post<Scope>(environment.apiBase + '/api/scope', scope, {
       headers: {
