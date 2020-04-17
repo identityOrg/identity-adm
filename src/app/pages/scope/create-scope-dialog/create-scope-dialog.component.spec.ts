@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetailScopeComponent } from './detail-scope.component';
+import { CreateScopeDialogComponent } from './create-scope-dialog.component';
 
-describe('DetailScopeComponent', () => {
-  let component: DetailScopeComponent;
-  let fixture: ComponentFixture<DetailScopeComponent>;
+describe('CreateScopeDialogComponent', () => {
+  let component: CreateScopeDialogComponent;
+  let fixture: ComponentFixture<CreateScopeDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailScopeComponent ]
+      declarations: [ CreateScopeDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailScopeComponent);
+    fixture = TestBed.createComponent(CreateScopeDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

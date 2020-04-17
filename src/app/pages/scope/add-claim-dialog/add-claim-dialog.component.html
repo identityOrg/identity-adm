@@ -1,20 +1,25 @@
 <h2 mat-dialog-title>Add Claim to Scope</h2>
 <mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Claim to add</mat-label>
-    <mat-select [(ngModel)]="selectedClaim">
-      <mat-option *ngFor="let claim of availableClaims" [value]="claim.id">
-        {{claim.standardAttribute}} - {{claim.description}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form #form="ngForm">
+    <mat-form-field>
+      <mat-label>Claim to add</mat-label>
+      <mat-select [(ngModel)]="selectedClaim" name="claimId">
+        <mat-option *ngFor="let claim of availableClaims" [value]="claim.id">
+          {{claim.standardAttribute}} - {{claim.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-icon-button [mat-dialog-close]="false">
-    <mat-icon color="warn">cancel</mat-icon>
+  <button mat-flat-button color="warn" [mat-dialog-close]="false">
+    Cancel
+    <mat-icon matSuffix>cancel</mat-icon>
   </button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-icon-button [mat-dialog-close]="selectedClaim">
-    <mat-icon color="primary">add_box</mat-icon>
+  <button mat-flat-button color="primary"
+          [mat-dialog-close]="selectedClaim" [disabled]="form.pristine || form.invalid">
+    Add
+    <mat-icon matSuffix>add_box</mat-icon>
   </button>
 </mat-dialog-actions>

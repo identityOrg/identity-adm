@@ -36,17 +36,16 @@ import {ChangePasswordComponent} from './pages/change-password/change-password.c
 import {ListClientComponent} from './pages/client/list-client/list-client.component';
 import {DetailClientComponent} from './pages/client/detail-client/detail-client.component';
 import {ListScopeComponent} from './pages/scope/list-scope/list-scope.component';
-import {DetailScopeComponent} from './pages/scope/detail-scope/detail-scope.component';
-import {CreateScopeComponent} from './pages/scope/create-scope/create-scope.component';
-import {CommonModule} from "@angular/common";
-import {DynamicEditComponent} from "./layout/dynamic-edit/dynamic-edit.component";
-import {MatNativeDateModule} from "@angular/material/core";
-import { ClaimComponent } from './pages/claim/claim.component';
-import { DetailClaimComponent } from './pages/claim/detail-claim/detail-claim.component';
-import { EditClaimComponent } from './pages/claim/edit-claim/edit-claim.component';
-import { ListClaimComponent } from './pages/claim/list-claim/list-claim.component';
-import { CreateClaimComponent } from './pages/claim/create-claim/create-claim.component';
-import { AddClaimDialogComponent } from './pages/scope/add-claim-dialog/add-claim-dialog.component';
+import {CommonModule} from '@angular/common';
+import {DynamicEditComponent} from './layout/dynamic-edit/dynamic-edit.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import {ClaimComponent} from './pages/claim/claim.component';
+import {DetailClaimComponent} from './pages/claim/detail-claim/detail-claim.component';
+import {EditClaimComponent} from './pages/claim/edit-claim/edit-claim.component';
+import {ListClaimComponent} from './pages/claim/list-claim/list-claim.component';
+import {CreateClaimComponent} from './pages/claim/create-claim/create-claim.component';
+import {AddClaimDialogComponent} from './pages/scope/add-claim-dialog/add-claim-dialog.component';
+import {CreateScopeDialogComponent} from './pages/scope/create-scope-dialog/create-scope-dialog.component';
 
 @NgModule({
   declarations: [
@@ -78,8 +77,6 @@ import { AddClaimDialogComponent } from './pages/scope/add-claim-dialog/add-clai
     ListClientComponent,
     DetailClientComponent,
     ListScopeComponent,
-    DetailScopeComponent,
-    CreateScopeComponent,
     DynamicEditComponent,
     ClaimComponent,
     DetailClaimComponent,
@@ -87,6 +84,7 @@ import { AddClaimDialogComponent } from './pages/scope/add-claim-dialog/add-clai
     ListClaimComponent,
     CreateClaimComponent,
     AddClaimDialogComponent,
+    CreateScopeDialogComponent,
   ],
   imports: [
     CommonModule,
