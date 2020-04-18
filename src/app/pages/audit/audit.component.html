@@ -15,48 +15,48 @@
             <span>Available Events</span>
           </mat-card-title>
           <mat-card-content>
-            <table mat-table [dataSource]="dataSource" class="main-table">
+            <table [dataSource]="dataSource" class="main-table" mat-table>
 
               <!-- Position Column -->
               <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> ID</th>
-                <td mat-cell *matCellDef="let element">
-                  <a href="#" (click)="showDetails(element)">{{element.id}}</a>
+                <th *matHeaderCellDef mat-header-cell> ID</th>
+                <td *matCellDef="let element" mat-cell>
+                  <a (click)="showDetails(element)" href="#">{{element.id}}</a>
                 </td>
               </ng-container>
 
               <!-- Name Column -->
               <ng-container matColumnDef="eventName">
-                <th mat-header-cell *matHeaderCellDef> Event Name</th>
-                <td mat-cell *matCellDef="let element"> {{element.eventName}}</td>
+                <th *matHeaderCellDef mat-header-cell> Event Name</th>
+                <td *matCellDef="let element" mat-cell> {{element.eventName}}</td>
               </ng-container>
 
               <!-- Weight Column -->
               <ng-container matColumnDef="eventTime">
-                <th mat-header-cell *matHeaderCellDef> Event Time</th>
-                <td mat-cell *matCellDef="let element"> {{element.eventTime}}</td>
+                <th *matHeaderCellDef mat-header-cell> Event Time</th>
+                <td *matCellDef="let element" mat-cell> {{element.eventTime}}</td>
               </ng-container>
 
               <!-- Symbol Column -->
               <ng-container matColumnDef="authType">
-                <th mat-header-cell *matHeaderCellDef> Auth Type</th>
-                <td mat-cell *matCellDef="let element"> {{element.authType}}</td>
+                <th *matHeaderCellDef mat-header-cell> Auth Type</th>
+                <td *matCellDef="let element" mat-cell> {{element.authType}}</td>
               </ng-container>
 
               <!-- Symbol Column -->
               <ng-container matColumnDef="principleName">
-                <th mat-header-cell *matHeaderCellDef> Principle Name</th>
-                <td mat-cell *matCellDef="let element"> {{element.principleName}}</td>
+                <th *matHeaderCellDef mat-header-cell> Principle Name</th>
+                <td *matCellDef="let element" mat-cell> {{element.principleName}}</td>
               </ng-container>
 
               <!-- Symbol Column -->
               <ng-container matColumnDef="principleType">
-                <th mat-header-cell *matHeaderCellDef> Principle Type</th>
-                <td mat-cell *matCellDef="let element"> {{element.principleType}}</td>
+                <th *matHeaderCellDef mat-header-cell> Principle Type</th>
+                <td *matCellDef="let element" mat-cell> {{element.principleType}}</td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef='let row; columns: displayedColumns;'></tr>
+              <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+              <tr *matRowDef='let row; columns: displayedColumns;' mat-row></tr>
             </table>
 
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

@@ -3,24 +3,24 @@
     <span>Configured Scopes</span>
   </mat-card-title>
   <mat-card-content>
-    <table mat-table [dataSource]="dataSource" class="main-table">
+    <table [dataSource]="dataSource" class="main-table" mat-table>
 
       <!-- Position Column -->
       <ng-container matColumnDef="scopeId">
-        <th mat-header-cell *matHeaderCellDef> Scope ID</th>
-        <td mat-cell *matCellDef="let element">
-          <a href="" [routerLink]="['/scope', 'edit', element.scopeId]"> {{element.scopeId}}</a>
+        <th *matHeaderCellDef mat-header-cell> Scope ID</th>
+        <td *matCellDef="let element" mat-cell>
+          <a [routerLink]="['/scope', 'edit', element.scopeId]" href=""> {{element.scopeId}}</a>
         </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="scopeName">
-        <th mat-header-cell *matHeaderCellDef> Scope Name</th>
-        <td mat-cell *matCellDef="let element"> {{element.scopeName}}</td>
+        <th *matHeaderCellDef mat-header-cell> Scope Name</th>
+        <td *matCellDef="let element" mat-cell> {{element.scopeName}}</td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef='let row; columns: displayedColumns;'></tr>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef='let row; columns: displayedColumns;' mat-row></tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

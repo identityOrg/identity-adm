@@ -2,12 +2,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
-import {EditControl} from "../../../model/edit-control";
-import {FormGroup} from "@angular/forms";
-import {ClaimService} from "../../../service/claim.service";
-import {FormService} from "../../../service/form.service";
-import {Claim} from "../../../model/claim";
-import {CreateFormConfig} from "./create-user-form-config";
+import {EditControl} from '../../../model/edit-control';
+import {FormGroup} from '@angular/forms';
+import {ClaimService} from '../../../service/claim.service';
+import {FormService} from '../../../service/form.service';
+import {Claim} from '../../../model/claim';
+import {CreateFormConfig} from './create-user-form-config';
 
 @Component({
   selector: 'app-create-user',
@@ -40,11 +40,6 @@ export class CreateUserComponent implements OnInit {
     this.setUserData({} as User);
   }
 
-  private setUserData(data: User) {
-    this.formGroup.patchValue(data);
-    this.user = data;
-  }
-
   save(): boolean {
     if (this.formGroup.valid) {
       this.userService.create(this.formGroup.value)
@@ -54,5 +49,10 @@ export class CreateUserComponent implements OnInit {
         });
     }
     return false;
+  }
+
+  private setUserData(data: User) {
+    this.formGroup.patchValue(data);
+    this.user = data;
   }
 }

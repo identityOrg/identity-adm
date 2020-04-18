@@ -12,13 +12,13 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-flat-button color="warn" [mat-dialog-close]="false">
+  <button [mat-dialog-close]="false" color="warn" mat-flat-button>
     Cancel
     <mat-icon matSuffix>cancel</mat-icon>
   </button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-flat-button color="primary"
-          [mat-dialog-close]="selectedClaim" [disabled]="form.pristine || form.invalid">
+  <button [disabled]="form.pristine || form.invalid" [mat-dialog-close]="selectedClaim"
+          color="primary" mat-flat-button>
     Add
     <mat-icon matSuffix>add_box</mat-icon>
   </button>

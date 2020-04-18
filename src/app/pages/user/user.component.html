@@ -1,19 +1,19 @@
 <mat-toolbar>
   <span>User Management</span>
   <span fxFlex="1 1 auto"></span>
-  <button mat-icon-button color="warn" *ngIf="activeUser && activeUser.active" (click)="lockUser()">
+  <button (click)="lockUser()" *ngIf="activeUser && activeUser.active" color="warn" mat-icon-button>
     <mat-icon>lock</mat-icon>
   </button>
-  <button mat-icon-button color="primary" *ngIf="activeUser && !activeUser.active" (click)="enableUser()">
+  <button (click)="enableUser()" *ngIf="activeUser && !activeUser.active" color="primary" mat-icon-button>
     <mat-icon>lock_open</mat-icon>
   </button>
-  <button *ngIf="activeUser" mat-icon-button color="primary" [routerLink]="['/user', 'edit', activeUser.username]">
+  <button *ngIf="activeUser" [routerLink]="['/user', 'edit', activeUser.username]" color="primary" mat-icon-button>
     <mat-icon aria-label="Create new user">edit</mat-icon>
   </button>
-  <button mat-icon-button color="primary" routerLink="/user">
+  <button color="primary" mat-icon-button routerLink="/user">
     <mat-icon aria-label="Create new user">format_list_bulleted</mat-icon>
   </button>
-  <button mat-icon-button color="warn" routerLink="/user/create">
+  <button color="warn" mat-icon-button routerLink="/user/create">
     <mat-icon aria-label="Create new user">add_circle</mat-icon>
   </button>
 </mat-toolbar>

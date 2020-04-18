@@ -1,14 +1,14 @@
-<div [ngSwitch]="editControl.type" [formGroup]="editControl.formGroup" class="full-width">
+<div [formGroup]="editControl.formGroup" [ngSwitch]="editControl.type" class="full-width">
   <mat-form-field *ngSwitchCase="'text'" class="full-width">
     <mat-label>{{editControl.label}}</mat-label>
-    <input matInput [formControlName]="editControl.name" [readonly]="editControl.isReadonly">
+    <input [formControlName]="editControl.name" [readonly]="editControl.isReadonly" matInput>
     <mat-hint *ngIf="editControl.hint">{{editControl.hint}}</mat-hint>
     <mat-hint *ngIf="!editControl.hint && editControl.claimName">User attribute '{{editControl.claimName}}'</mat-hint>
   </mat-form-field>
   <mat-form-field *ngSwitchCase="'date'" class="full-width">
     <mat-label>{{editControl.label}}</mat-label>
-    <input matInput [matDatepicker]="picker" [formControlName]="editControl.name" [readonly]="editControl.isReadonly">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <input [formControlName]="editControl.name" [matDatepicker]="picker" [readonly]="editControl.isReadonly" matInput>
+    <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <mat-hint *ngIf="editControl.hint">{{editControl.hint}}</mat-hint>
     <mat-hint *ngIf="!editControl.hint && editControl.claimName">User attribute '{{editControl.claimName}}'</mat-hint>

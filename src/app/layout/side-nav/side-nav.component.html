@@ -1,26 +1,26 @@
-<nav class="col-md-2 d-none d-md-block bg-light sidebar" *ngIf="oAuthService.hasValidAccessToken()">
+<nav *ngIf="oAuthService.hasValidAccessToken()" class="col-md-2 d-none d-md-block bg-light sidebar">
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active" href="#">
+        <a class="nav-link" href="#" routerLink="/dashboard" routerLinkActive="active">
           <span data-feather="home"></span>
           Dashboard
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/user" routerLinkActive="active" href="#">
+        <a class="nav-link" href="#" routerLink="/user" routerLinkActive="active">
           <span data-feather="file"></span>
           Users
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/client" routerLinkActive="active" href="#">
+        <a class="nav-link" href="#" routerLink="/client" routerLinkActive="active">
           <span data-feather="shopping-cart"></span>
           Clients
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/scope" routerLinkActive="active" href="#">
+        <a class="nav-link" href="#" routerLink="/scope" routerLinkActive="active">
           <span data-feather="users"></span>
           Scopes
         </a>
@@ -35,7 +35,7 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/audit" routerLinkActive="active" href="#">
+        <a class="nav-link" href="#" routerLink="/audit" routerLinkActive="active">
           <span data-feather="file-text"></span>
           All Events
         </a>

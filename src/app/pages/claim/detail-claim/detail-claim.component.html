@@ -8,27 +8,27 @@
   </mat-card-header>
   <mat-card-content>
     <div fxLayout="column" fxLayout.gt-xs="row wrap">
-      <app-display-element displayName="Standard Attribute"
-                           [value]="claim.standardAttribute"
-                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      <app-display-element [value]="claim.standardAttribute"
+                           displayName="Standard Attribute"
+                           fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
       </app-display-element>
-      <app-display-element displayName="Description"
-                           [value]="claim.description"
-                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      <app-display-element [value]="claim.description"
+                           displayName="Description"
+                           fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
       </app-display-element>
-      <app-display-element displayName="Claim Type"
-                           [value]="claim.claimType"
-                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      <app-display-element [value]="claim.claimType"
+                           displayName="Claim Type"
+                           fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
       </app-display-element>
-      <app-display-element displayName="Custom Attribute"
-                           yesNo="true"
-                           [value]="claim.custom"
-                           fxFlex="100" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+      <app-display-element [value]="claim.custom"
+                           displayName="Custom Attribute"
+                           fxFlex="100"
+                           fxFlex.gt-md="32" fxFlex.gt-xs="49" yesNo="true">
       </app-display-element>
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button *ngIf="claim.custom" color="primary" [routerLink]="['/claim', 'edit', claim.id]">
+    <button *ngIf="claim.custom" [routerLink]="['/claim', 'edit', claim.id]" color="primary" mat-icon-button>
       <mat-icon aria-label="Go back to detail">edit</mat-icon>
     </button>
   </mat-card-actions>

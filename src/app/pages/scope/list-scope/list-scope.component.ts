@@ -17,7 +17,8 @@ export class ListScopeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private scopeService: ScopeService, private dialog: MatDialog) { }
+  constructor(private scopeService: ScopeService, private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.scopeService.listScopes(null)

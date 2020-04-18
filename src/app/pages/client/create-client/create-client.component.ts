@@ -32,11 +32,6 @@ export class CreateClientComponent implements OnInit {
     this.setClientData(client);
   }
 
-  private setClientData(data) {
-    this.client = data;
-    this.scopeDS = new MatTableDataSource(data.scopes);
-  }
-
   save() {
     this.clientService.create(this.client)
       .subscribe(data => {
@@ -66,5 +61,10 @@ export class CreateClientComponent implements OnInit {
           }
         }
       });
+  }
+
+  private setClientData(data) {
+    this.client = data;
+    this.scopeDS = new MatTableDataSource(data.scopes);
   }
 }

@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {EditControl} from "../../../model/edit-control";
-import {Claim} from "../../../model/claim";
-import {FormGroup} from "@angular/forms";
-import {ClaimService} from "../../../service/claim.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormService} from "../../../service/form.service";
+import {Component, OnInit} from '@angular/core';
+import {EditControl} from '../../../model/edit-control';
+import {FormGroup} from '@angular/forms';
+import {ClaimService} from '../../../service/claim.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormService} from '../../../service/form.service';
 
 @Component({
   selector: 'app-create-claim',
@@ -13,12 +12,12 @@ import {FormService} from "../../../service/form.service";
 })
 export class CreateClaimComponent implements OnInit {
 
+  formGroup: FormGroup;
+  controls: EditControl[];
   private FormConfig = [
     new EditControl({name: 'standardAttribute', label: 'Standard Attribute', type: 'text', groupName: 'general'}),
     new EditControl({name: 'description', label: 'Description', type: 'text', groupName: 'general'}),
   ];
-  formGroup: FormGroup;
-  controls: EditControl[];
 
   constructor(private claimService: ClaimService,
               private activeRoute: ActivatedRoute,

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DynamicEditComponent } from './dynamic-edit.component';
+import {DynamicEditComponent} from './dynamic-edit.component';
 
 describe('DynamicEditComponent', () => {
   let component: DynamicEditComponent;
@@ -8,9 +8,9 @@ describe('DynamicEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DynamicEditComponent ]
+      declarations: [DynamicEditComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {Claim} from "../../../model/claim";
-import {MatPaginator} from "@angular/material/paginator";
-import {ClaimService} from "../../../service/claim.service";
-import {MediaObserver} from "@angular/flex-layout";
+import {MatTableDataSource} from '@angular/material/table';
+import {Claim} from '../../../model/claim';
+import {MatPaginator} from '@angular/material/paginator';
+import {ClaimService} from '../../../service/claim.service';
+import {MediaObserver} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-list-claim',

@@ -9,18 +9,18 @@
   <mat-card-content>
     <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
       <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'general')"
-                        [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+                        [editControl]="ctrl" fxFlex="99" fxFlex.gt-md="32" fxFlex.gt-xs="49">
       </app-dynamic-edit>
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button color="warn" [routerLink]="['/claim', 'detail', claim.id]">
+    <button [routerLink]="['/claim', 'detail', claim.id]" color="warn" mat-icon-button>
       <mat-icon aria-label="List Claim">cancel</mat-icon>
     </button>
-    <button mat-icon-button color="accent" (click)="resetClaim()">
+    <button (click)="resetClaim()" color="accent" mat-icon-button>
       <mat-icon>refresh</mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="save()">
+    <button (click)="save()" color="primary" mat-icon-button>
       <mat-icon>save</mat-icon>
     </button>
   </mat-card-actions>

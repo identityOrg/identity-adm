@@ -2,12 +2,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../model/user';
 import {UserService} from '../../../service/user.service';
-import {FormService} from "../../../service/form.service";
-import {EditControl} from "../../../model/edit-control";
-import {FormGroup} from "@angular/forms";
-import {UpdateFormConfig} from "./update-user-form-config";
-import {Claim} from "../../../model/claim";
-import {ClaimService} from "../../../service/claim.service";
+import {FormService} from '../../../service/form.service';
+import {EditControl} from '../../../model/edit-control';
+import {FormGroup} from '@angular/forms';
+import {UpdateFormConfig} from './update-user-form-config';
+import {Claim} from '../../../model/claim';
+import {ClaimService} from '../../../service/claim.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -48,11 +48,6 @@ export class EditUserComponent implements OnInit {
       });
   }
 
-  private setUserData(data: User) {
-    this.formGroup.patchValue(data);
-    this.user = data;
-  }
-
   save(): boolean {
     if (this.formGroup.valid) {
       this.userService.edit(this.formGroup.value)
@@ -62,5 +57,10 @@ export class EditUserComponent implements OnInit {
         });
     }
     return false;
+  }
+
+  private setUserData(data: User) {
+    this.formGroup.patchValue(data);
+    this.user = data;
   }
 }

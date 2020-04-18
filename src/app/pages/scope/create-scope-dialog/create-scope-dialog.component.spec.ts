@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateScopeDialogComponent } from './create-scope-dialog.component';
+import {CreateScopeDialogComponent} from './create-scope-dialog.component';
 
 describe('CreateScopeDialogComponent', () => {
   let component: CreateScopeDialogComponent;
@@ -8,9 +8,9 @@ describe('CreateScopeDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateScopeDialogComponent ]
+      declarations: [CreateScopeDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

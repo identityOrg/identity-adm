@@ -3,54 +3,54 @@
     <span>Available Users</span>
   </mat-card-title>
   <mat-card-content>
-    <table mat-table [dataSource]="dataSource" class="main-table">
+    <table [dataSource]="dataSource" class="main-table" mat-table>
 
       <!-- Position Column -->
       <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef> Username</th>
-        <td mat-cell *matCellDef="let element">
-          <a href="" [routerLink]="['/user', 'detail', element.username]"> {{element.username}}</a>
+        <th *matHeaderCellDef mat-header-cell> Username</th>
+        <td *matCellDef="let element" mat-cell>
+          <a [routerLink]="['/user', 'detail', element.username]" href=""> {{element.username}}</a>
         </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="creationDate">
-        <th mat-header-cell *matHeaderCellDef> Created On</th>
-        <td mat-cell *matCellDef="let element"> {{element.creationDate | date:'medium'}}</td>
+        <th *matHeaderCellDef mat-header-cell> Created On</th>
+        <td *matCellDef="let element" mat-cell> {{element.creationDate | date:'medium'}}</td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="active">
-        <th mat-header-cell *matHeaderCellDef> Active</th>
-        <td mat-cell *matCellDef="let element">
+        <th *matHeaderCellDef mat-header-cell> Active</th>
+        <td *matCellDef="let element" mat-cell>
           <mat-icon [color]="element.active?'primary':'warn'">{{element.active ? 'done' : 'clear'}}</mat-icon>
         </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="locked">
-        <th mat-header-cell *matHeaderCellDef> Locked</th>
-        <td mat-cell *matCellDef="let element">
+        <th *matHeaderCellDef mat-header-cell> Locked</th>
+        <td *matCellDef="let element" mat-cell>
           <mat-icon [color]="element.locked?'warn':'primary'">{{element.locked ? 'done' : 'clear'}}</mat-icon>
         </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="passwordExpiryDate">
-        <th mat-header-cell *matHeaderCellDef> Password Expires On</th>
-        <td mat-cell *matCellDef="let element"> {{element.passwordExpiryDate|date:'mediumDate'}}</td>
+        <th *matHeaderCellDef mat-header-cell> Password Expires On</th>
+        <td *matCellDef="let element" mat-cell> {{element.passwordExpiryDate|date:'mediumDate'}}</td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="admin">
-        <th mat-header-cell *matHeaderCellDef> Admin</th>
-        <td mat-cell *matCellDef="let element">
+        <th *matHeaderCellDef mat-header-cell> Admin</th>
+        <td *matCellDef="let element" mat-cell>
           <mat-icon [color]="element.admin?'primary':'warn'">{{element.admin ? 'done' : 'clear'}}</mat-icon>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef='let row; columns: displayedColumns;'></tr>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef='let row; columns: displayedColumns;' mat-row></tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

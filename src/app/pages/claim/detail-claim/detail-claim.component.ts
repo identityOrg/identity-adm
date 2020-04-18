@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Claim} from "../../../model/claim";
-import {ClaimService} from "../../../service/claim.service";
-import {ActivatedRoute} from "@angular/router";
+import {Claim} from '../../../model/claim';
+import {ClaimService} from '../../../service/claim.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-detail-claim',

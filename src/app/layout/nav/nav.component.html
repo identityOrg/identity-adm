@@ -1,12 +1,12 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#" routerLink="/">Identity</a>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <input aria-label="Search" class="form-control form-control-dark w-100" placeholder="Search" type="text">
   <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap" *ngIf="oAuthService.hasValidAccessToken()">
-      <a class="nav-link" routerLink="/logout" href="#">Sign Out</a>
+    <li *ngIf="oAuthService.hasValidAccessToken()" class="nav-item text-nowrap">
+      <a class="nav-link" href="#" routerLink="/logout">Sign Out</a>
     </li>
-    <li class="nav-item text-nowrap" *ngIf="!oAuthService.hasValidAccessToken()">
-      <a class="nav-link" (click)="oAuthService.initLoginFlow()" href="#">Sign In</a>
+    <li *ngIf="!oAuthService.hasValidAccessToken()" class="nav-item text-nowrap">
+      <a (click)="oAuthService.initLoginFlow()" class="nav-link" href="#">Sign In</a>
     </li>
   </ul>
 </nav>

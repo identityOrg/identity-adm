@@ -1,4 +1,4 @@
-import { EditControl } from './edit-control';
+import {EditControl} from './edit-control';
 
 describe('EditControl', () => {
   it('should create an instance', () => {

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Claim} from "../../../model/claim";
-import {ClaimService} from "../../../service/claim.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {EditControl} from "../../../model/edit-control";
-import {FormService} from "../../../service/form.service";
-import {FormGroup} from "@angular/forms";
+import {Claim} from '../../../model/claim';
+import {ClaimService} from '../../../service/claim.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {EditControl} from '../../../model/edit-control';
+import {FormService} from '../../../service/form.service';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-claim',
@@ -13,14 +13,14 @@ import {FormGroup} from "@angular/forms";
 })
 export class EditClaimComponent implements OnInit {
 
+  claim: Claim = {} as Claim;
+  formGroup: FormGroup;
+  controls: EditControl[];
   private FormConfig = [
     new EditControl({name: 'id', label: 'Identifier', type: 'text', groupName: 'none'}),
     new EditControl({name: 'standardAttribute', label: 'Standard Attribute', type: 'text', groupName: 'general'}),
     new EditControl({name: 'description', label: 'Description', type: 'text', groupName: 'general'}),
   ];
-  claim: Claim = {} as Claim;
-  formGroup: FormGroup;
-  controls: EditControl[];
 
   constructor(private claimService: ClaimService,
               private activeRoute: ActivatedRoute,

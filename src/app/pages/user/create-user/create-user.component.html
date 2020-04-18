@@ -14,7 +14,7 @@
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
           <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'general')"
-                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-md="32" fxFlex.gt-xs="49">
           </app-dynamic-edit>
         </div>
       </mat-expansion-panel>
@@ -26,7 +26,7 @@
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
           <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'profile')"
-                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-md="32" fxFlex.gt-xs="49">
           </app-dynamic-edit>
         </div>
       </mat-expansion-panel>
@@ -38,7 +38,7 @@
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
           <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'address')"
-                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-md="32" fxFlex.gt-xs="49">
           </app-dynamic-edit>
         </div>
       </mat-expansion-panel>
@@ -50,7 +50,7 @@
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
           <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'communication')"
-                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-md="32" fxFlex.gt-xs="49">
           </app-dynamic-edit>
         </div>
       </mat-expansion-panel>
@@ -62,24 +62,21 @@
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-evenly center">
           <app-dynamic-edit *ngFor="let ctrl of formService.groupedControl(controls, 'custom')"
-                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-xs="49" fxFlex.gt-md="32">
+                            [editControl]="ctrl" fxFlex="99" fxFlex.gt-md="32" fxFlex.gt-xs="49">
           </app-dynamic-edit>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button color="warn" [routerLink]="['/user', 'detail', user.username]">
+    <button [routerLink]="['/user', 'detail', user.username]" color="warn" mat-icon-button>
       <mat-icon>cancel</mat-icon>
     </button>
-    <button mat-icon-button color="accent" (click)="resetUser()">
+    <button (click)="resetUser()" color="accent" mat-icon-button>
       <mat-icon>refresh</mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="save()">
+    <button (click)="save()" color="primary" mat-icon-button>
       <mat-icon>save</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>
-<pre>
-  {{formGroup?.value|json}}
-</pre>

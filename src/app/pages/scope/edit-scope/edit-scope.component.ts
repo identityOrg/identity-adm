@@ -54,12 +54,6 @@ export class EditScopeComponent implements OnInit {
       });
   }
 
-  private setData(scope: Scope) {
-    this.scope = scope;
-    this.dataSource = new MatTableDataSource<Claim>(scope.attachedClaims);
-    this.dataSource.paginator = this.paginator;
-  }
-
   reset() {
 
   }
@@ -70,12 +64,6 @@ export class EditScopeComponent implements OnInit {
         this.scope = scope;
         this.showNotification(scope);
       });
-  }
-
-  private showNotification(scope: Scope) {
-    this.snackBar.open('Scope ' + scope.scopeId + ' updated!', 'Saved!', {
-      duration: 2000,
-    });
   }
 
   addClaim() {
@@ -106,5 +94,17 @@ export class EditScopeComponent implements OnInit {
         this.router.navigateByUrl('/scope').then(() => {
         });
       });
+  }
+
+  private setData(scope: Scope) {
+    this.scope = scope;
+    this.dataSource = new MatTableDataSource<Claim>(scope.attachedClaims);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  private showNotification(scope: Scope) {
+    this.snackBar.open('Scope ' + scope.scopeId + ' updated!', 'Saved!', {
+      duration: 2000,
+    });
   }
 }

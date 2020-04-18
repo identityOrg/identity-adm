@@ -46,11 +46,6 @@ export class EditClientComponent implements OnInit {
       });
   }
 
-  private setClientData(data) {
-    this.client = data;
-    this.scopeDS = new MatTableDataSource(data.scopes);
-  }
-
   save() {
     this.clientService.edit(this.client)
       .subscribe(data => {
@@ -118,5 +113,10 @@ export class EditClientComponent implements OnInit {
           }
         }
       });
+  }
+
+  private setClientData(data) {
+    this.client = data;
+    this.scopeDS = new MatTableDataSource(data.scopes);
   }
 }

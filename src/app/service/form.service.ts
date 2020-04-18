@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {EditControl} from "../model/edit-control";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Claim} from "../model/claim";
+import {EditControl} from '../model/edit-control';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Claim} from '../model/claim';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,20 @@ export class FormService {
   constructor(private formBuilder: FormBuilder) {
   }
 
+  private static buildValidator(editControl: EditControl): any[] {
+    let validators = [];
+    if (editControl.isRequired) {
+      validators.push(Validators.required);
+    }
+    if (editControl.isEmail) {
+      validators.push(Validators.email);
+    }
+    if (editControl.pattern) {
+      validators.push(Validators.pattern(editControl.pattern));
+    }
+    return validators;
+  }
+
   toFormGroup(editControls: EditControl[]): FormGroup {
     const group: any = {};
     editControls.forEach(editControl => {
@@ -18,7 +32,7 @@ export class FormService {
         group[editControl.name] = this.toFormGroup(editControl.children);
       } else if (editControl.type === 'array') {
         const validators = FormService.buildValidator(editControl);
-        group[editControl.name] = this.formBuilder.array([], validators)
+        group[editControl.name] = this.formBuilder.array([], validators);
       } else {
         const validators = FormService.buildValidator(editControl);
         group[editControl.name] = this.formBuilder.control(undefined, validators);
@@ -53,23 +67,9 @@ export class FormService {
       } else if (ctrl.type === 'array') {
 
       } else if (ctrl.groupName === groupName) {
-        filteredControl.push(ctrl)
+        filteredControl.push(ctrl);
       }
     });
     return filteredControl;
-  }
-
-  private static buildValidator(editControl: EditControl): any[] {
-    let validators = [];
-    if (editControl.isRequired) {
-      validators.push(Validators.required);
-    }
-    if (editControl.isEmail) {
-      validators.push(Validators.email);
-    }
-    if (editControl.pattern) {
-      validators.push(Validators.pattern(editControl.pattern));
-    }
-    return validators;
   }
 }

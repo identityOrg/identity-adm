@@ -1,4 +1,4 @@
-import {EditControl} from "../../../model/edit-control";
+import {EditControl} from '../../../model/edit-control';
 
 export const UpdateFormConfig = [
   new EditControl({name: 'username', label: 'Username', type: 'text', groupName: 'none'}),
