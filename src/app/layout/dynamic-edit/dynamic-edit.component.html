@@ -13,4 +13,9 @@
     <mat-hint *ngIf="editControl.hint">{{editControl.hint}}</mat-hint>
     <mat-hint *ngIf="!editControl.hint && editControl.claimName">User attribute '{{editControl.claimName}}'</mat-hint>
   </mat-form-field>
+  <div *ngSwitchCase="'yes-no'" class="full-width">
+    <mat-slide-toggle [formControlName]="editControl.name">{{editControl.label}}</mat-slide-toggle>
+    <mat-hint *ngIf="editControl.hint">{{editControl.hint}}</mat-hint>
+    <mat-hint *ngIf="!editControl.hint && editControl.claimName">User attribute '{{editControl.claimName}}'</mat-hint>
+  </div>
 </div>

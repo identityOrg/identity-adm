@@ -8,6 +8,7 @@ import {ClaimService} from '../../../service/claim.service';
 import {FormService} from '../../../service/form.service';
 import {Claim} from '../../../model/claim';
 import {CreateFormConfig} from './create-user-form-config';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-user',
@@ -24,6 +25,7 @@ export class CreateUserComponent implements OnInit {
   constructor(private userService: UserService,
               private activeRoute: ActivatedRoute,
               private router: Router,
+              private snackBar: MatSnackBar,
               private claimService: ClaimService,
               public formService: FormService) {
   }
@@ -41,12 +43,14 @@ export class CreateUserComponent implements OnInit {
   }
 
   save(): boolean {
-    if (this.formGroup.valid) {
+    if (this.formGroup.valid && !this.formGroup.pristine) {
       this.userService.create(this.formGroup.value)
         .subscribe(data => {
           this.router.navigateByUrl('/user/detail/' + data.username).then(() => {
           });
         });
+    } else {
+      this.snackBar.open('Error: Please correct the form before submitting', 'error', {duration: 2000});
     }
     return false;
   }
