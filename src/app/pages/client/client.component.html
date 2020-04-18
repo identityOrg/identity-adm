@@ -1,12 +1,15 @@
 <mat-toolbar>
   <span>Client Management</span>
   <span fxFlex="1 1 auto"></span>
+  <button *ngIf="activeClient" [routerLink]="['/client', 'edit', activeClient.clientId]" color="primary" mat-icon-button>
+    <mat-icon aria-label="Edit client">edit</mat-icon>
+  </button>
   <button color="primary" mat-icon-button routerLink="/client">
-    <mat-icon aria-label="Create new user">format_list_bulleted</mat-icon>
+    <mat-icon aria-label="List client">format_list_bulleted</mat-icon>
   </button>
   <button color="warn" mat-icon-button routerLink="/client/create">
-    <mat-icon aria-label="Create new user">add_circle</mat-icon>
+    <mat-icon aria-label="Create new client">add_circle</mat-icon>
   </button>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<router-outlet (activate)="subscribeClient($event)" (deactivate)="unSubscribeClient()"></router-outlet>
 

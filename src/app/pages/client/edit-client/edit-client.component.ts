@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Client} from '../../../model/client';
 import {ClientService} from '../../../service/client.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -15,6 +15,7 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class EditClientComponent implements OnInit {
 
+  @Output() clientObserver: EventEmitter<Client> = new EventEmitter();
   title: string;
   editMode = false;
   client = {} as Client;
@@ -118,5 +119,6 @@ export class EditClientComponent implements OnInit {
   private setClientData(data) {
     this.client = data;
     this.scopeDS = new MatTableDataSource(data.scopes);
+    this.clientObserver.emit(data);
   }
 }
