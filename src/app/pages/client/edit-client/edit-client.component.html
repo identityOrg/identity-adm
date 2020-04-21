@@ -1,99 +1,28 @@
-<div class="card" style="width: 100%">
-  <div class="card-body">
-    <h5 class="card-title">{{client.clientName}} <span
-      [class]="client.status === 'ACTIVE'? 'dot-active': 'dot-inactive'"></span></h5>
-    <p *ngIf="editMode == false" class="card-text">Display Client details</p>
-    <p *ngIf="editMode" class="card-text">Edit Client details</p>
-  </div>
-  <mat-tab-group>
-    <mat-tab label="General">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="client.clientId" disabled matInput placeholder="Client ID">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="client.clientName" [disabled]="editMode == false" matInput placeholder="Client Name">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="client.creationDate" disabled matInput placeholder="Creation Date"
-                   type="datetime-local">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="client.expiryDate" [disabled]="editMode == false" matInput placeholder="Expiry Date"
-                   type="datetime-local">
-          </mat-form-field>
-        </li>
-      </ul>
-    </mat-tab>
-    <mat-tab label="Configurations">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="client.redirectUri" [disabled]="editMode == false" matInput placeholder="Redirect URI"
-                   type="url">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="client.accessTokenValidity" [disabled]="editMode == false" matInput
-                   placeholder="Access Token Validity">
-          </mat-form-field>
-        </li>
-        <li class="list-group-item">
-          <mat-form-field class="full-width">
-            <input [(ngModel)]="client.refreshTokenValidity" [disabled]="editMode == false" matInput
-                   placeholder="Refresh Token Validity">
-          </mat-form-field>
-        </li>
-      </ul>
-    </mat-tab>
-    <mat-tab label="Scopes">
-      <table [dataSource]="scopeDS" class="main-table" mat-table>
-        <ng-container matColumnDef="scopeId">
-          <th *matHeaderCellDef mat-header-cell> Scope ID</th>
-          <td *matCellDef="let element" mat-cell> {{element.scopeId}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="scopeName">
-          <th *matHeaderCellDef mat-header-cell> Scope Name</th>
-          <td *matCellDef="let element" mat-cell> {{element.scopeName}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="actions">
-          <th *matHeaderCellDef mat-header-cell></th>
-          <td *matCellDef="let element" mat-cell>
-            <button (click)="deleteScope(element.scopeId)" [disabled]="editMode == false" color="accent"
-                    mat-icon-button>
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-
-        <tr *matHeaderRowDef="scopeColumns" mat-header-row></tr>
-        <tr *matRowDef='let row; columns: scopeColumns;' mat-row></tr>
-      </table>
-      <button (click)="addScope()" *ngIf="editMode" color="warn" mat-icon-button>
-        <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
-      </button>
-    </mat-tab>
-  </mat-tab-group>
-  <div class="card-body">
-    <button color="accent" mat-icon-button routerLink="/client">
-      <mat-icon>replay</mat-icon>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span>Client "<b>{{client.clientMetadata.client_name}}</b>"</span>
+    </mat-card-title>
+    <mat-card-subtitle>Status - {{client.status}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            General Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="resetUser()" color="accent" mat-icon-button>
+      <mat-icon>refresh</mat-icon>
     </button>
-    <a *ngIf="editMode == false" [routerLink]="['/client', 'edit', client.clientId]" class="card-link" href="#">Edit
-      Client</a>
-    <a *ngIf="editMode == true" [routerLink]="['/client', 'detail', client.clientId]" class="card-link"
-       href="#">Cancel</a>
-    <a (click)="save()" *ngIf="editMode == true" class="card-link" href="#">Save Client</a>
-    <a (click)="lockClient()" *ngIf="client.status === 'ACTIVE'" class="card-link" href="#">Lock Client</a>
-    <a (click)="enableClient()" *ngIf="client.status === 'LOCKED'" class="card-link" href="#">Enable Client</a>
-  </div>
-</div>
+    <button (click)="save()" color="primary" mat-icon-button>
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+<pre>{{clientForm.value|json}}</pre>

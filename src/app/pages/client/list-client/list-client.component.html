@@ -9,7 +9,7 @@
       <ng-container matColumnDef="clientId">
         <th *matHeaderCellDef mat-header-cell> Client ID</th>
         <td *matCellDef="let element" mat-cell>
-          <a [routerLink]="['/client', 'detail', element.clientId]" href="">{{element.clientId}}</a>
+          <a [routerLink]="['/client', 'edit', element.clientId]" href="">{{element.clientId}}</a>
         </td>
       </ng-container>
 

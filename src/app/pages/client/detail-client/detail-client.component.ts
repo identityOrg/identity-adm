@@ -11,7 +11,7 @@ import {Client} from '../../../model/client';
 export class DetailClientComponent implements OnInit {
 
   @Output() clientObserver: EventEmitter<Client> = new EventEmitter();
-  private client: Client = {} as Client;
+  client: Client = {} as Client;
 
   constructor(private clientService: ClientService,
               private activatedRoute: ActivatedRoute) {
