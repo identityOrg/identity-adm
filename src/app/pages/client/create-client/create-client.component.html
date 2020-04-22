@@ -1,1 +1,15 @@
-<p>Client create</p>
+<h2 mat-dialog-title>Create new Client</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-width">
+    <mat-label>Client ID</mat-label>
+    <input [(ngModel)]="client.clientId" matInput type="text">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Client Name</mat-label>
+    <input [(ngModel)]="client.clientName" matInput required type="text">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button [mat-dialog-close]="false" mat-flat-button>Cancel</button>
+  <button [mat-dialog-close]="client" mat-flat-button>Create</button>
+</mat-dialog-actions>

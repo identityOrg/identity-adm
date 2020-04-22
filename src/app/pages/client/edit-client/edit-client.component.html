@@ -13,6 +13,21 @@
             General Information
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <div fxLayout="column" fxLayout.gt-xs="row wrap">
+          <app-display-element [value]="client.clientId" displayName="Client ID" fxFlex="100"
+                               fxFlex.gt-md="32" fxFlex.gt-xs="49">
+          </app-display-element>
+          <app-display-element [value]="client.creationDate" dateFormat="medium" displayName="Created On"
+                               fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+          </app-display-element>
+          <mat-form-field [formGroup]="clientForm" fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Expiry Date</mat-label>
+            <input [matDatepicker]="picker" formControlName="expiryDate" matInput>
+            <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-hint>Set to expire the client after some time</mat-hint>
+          </mat-form-field>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>

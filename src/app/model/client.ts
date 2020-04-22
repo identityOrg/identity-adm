@@ -6,4 +6,5 @@ export interface Client {
   creationDate: Date;
   expiryDate: Date;
   clientMetadata: ClientMetadata;
+  [prop: string]: any;
 }

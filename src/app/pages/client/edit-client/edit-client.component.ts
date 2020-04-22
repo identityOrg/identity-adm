@@ -14,13 +14,15 @@ import {FormGroup} from '@angular/forms';
 export class EditClientComponent implements OnInit {
 
   @Output() clientObserver: EventEmitter<Client> = new EventEmitter();
-  client = {} as Client;
+  client: Client;
   clientForm: FormGroup;
 
   constructor(private clientService: ClientService,
               private activeRoute: ActivatedRoute,
               private router: Router,
               private matDialog: MatDialog) {
+    this.client = {} as Client;
+    this.client.clientMetadata = {};
     this.clientForm = clientService.createFormGroup();
   }
 
