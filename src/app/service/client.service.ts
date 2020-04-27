@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Client} from '../model/client';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DiscoveryDocument} from '../model/discovery-document';
 
 @Injectable()
 export class ClientService {
@@ -39,6 +40,12 @@ export class ClientService {
       headers: {
         Authorization: this.oAuthService.authorizationHeader(),
       },
+      observe: 'body'
+    });
+  }
+
+  getDiscoveryDocument(): Observable<DiscoveryDocument> {
+    return this.http.get<DiscoveryDocument>(environment.oidcConfig.issuer + '/.well-known/openid-configuration', {
       observe: 'body'
     });
   }
@@ -99,29 +106,33 @@ export class ClientService {
         application_type: this.formBuilder.control(''),
         subject_type: this.formBuilder.control(''),
         scope: this.formBuilder.control(''),
-        contacts: this.formBuilder.control(''),
+        contacts: this.formBuilder.array([]),
         logo_uri: this.formBuilder.control(''),
         client_uri: this.formBuilder.control(''),
         policy_uri: this.formBuilder.control(''),
         tos_uri: this.formBuilder.control(''),
-        redirect_uris: this.formBuilder.control(null, Validators.required),
-        request_uris: this.formBuilder.control(null),
+        redirect_uris: this.formBuilder.array([null], Validators.required),
+        request_uris: this.formBuilder.array([]),
         response_types: this.formBuilder.control(null),
-        request_object_signing_alg: this.formBuilder.control(''),
-        request_object_encryption_alg: this.formBuilder.control(''),
-        request_object_encryption_enc: this.formBuilder.control(''),
-        id_token_encrypted_response_enc: this.formBuilder.control(''),
-        id_token_encrypted_response_alg: this.formBuilder.control(''),
-        id_token_signed_response_alg: this.formBuilder.control(''),
-        userinfo_signed_response_alg: this.formBuilder.control(''),
-        userinfo_encrypted_response_alg: this.formBuilder.control(''),
-        userinfo_encrypted_response_enc: this.formBuilder.control(''),
+        request_object_signing_alg: this.formBuilder.control(null),
+        request_object_encryption_alg: this.formBuilder.control(null),
+        request_object_encryption_enc: this.formBuilder.control(null),
+        id_token_encrypted_response_enc: this.formBuilder.control(null),
+        id_token_encrypted_response_alg: this.formBuilder.control(null),
+        id_token_signed_response_alg: this.formBuilder.control(null),
+        userinfo_signed_response_alg: this.formBuilder.control(null),
+        userinfo_encrypted_response_alg: this.formBuilder.control(null),
+        userinfo_encrypted_response_enc: this.formBuilder.control(null),
         access_token_validity_minute: this.formBuilder.control(''),
         refresh_token_validity_minute: this.formBuilder.control(''),
-        default_max_age: this.formBuilder.control(''),
-        require_auth_time: this.formBuilder.control(''),
-        token_endpoint_auth_method: this.formBuilder.control(''),
-        token_endpoint_auth_signing_alg: this.formBuilder.control(''),
+        default_max_age: this.formBuilder.control(null),
+        require_auth_time: this.formBuilder.control(false),
+        token_endpoint_auth_method: this.formBuilder.control(null),
+        token_endpoint_auth_signing_alg: this.formBuilder.control(null),
+        introspection_endpoint_auth_method: this.formBuilder.control(null),
+        introspection_endpoint_auth_signing_alg: this.formBuilder.control(null),
+        revocation_endpoint_auth_method: this.formBuilder.control(null),
+        revocation_endpoint_auth_signing_alg: this.formBuilder.control(null),
       }),
     });
   }

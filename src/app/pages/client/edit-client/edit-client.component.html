@@ -5,7 +5,7 @@
     </mat-card-title>
     <mat-card-subtitle>Status - {{client.status}}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content [formGroup]="clientForm">
     <mat-accordion>
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
@@ -20,14 +20,267 @@
           <app-display-element [value]="client.creationDate" dateFormat="medium" displayName="Created On"
                                fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
           </app-display-element>
-          <mat-form-field [formGroup]="clientForm" fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
             <mat-label>Expiry Date</mat-label>
             <input [matDatepicker]="picker" formControlName="expiryDate" matInput>
             <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-hint>Set to expire the client after some time</mat-hint>
           </mat-form-field>
+          <mat-form-field formGroupName="clientMetadata" fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Access Token Validity</mat-label>
+            <input formControlName="access_token_validity_minute" matInput type="number">
+            <mat-hint>Validity is set in minutes</mat-hint>
+          </mat-form-field>
+          <mat-form-field formGroupName="clientMetadata" fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Refresh Token Validity</mat-label>
+            <input formControlName="refresh_token_validity_minute" matInput type="number">
+            <mat-hint>Validity is set in minutes</mat-hint>
+          </mat-form-field>
+          <mat-form-field formGroupName="clientMetadata" fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Default Max Age</mat-label>
+            <input formControlName="default_max_age" matInput type="number">
+            <mat-hint>Default max age in minutes</mat-hint>
+          </mat-form-field>
+          <mat-form-field formGroupName="clientMetadata" fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Id Token Signing Algorithm</mat-label>
+            <mat-select formControlName="application_type">
+              <mat-option value="web">Web Application</mat-option>
+              <mat-option value="native">Native/Mobile Application</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Grant Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div formGroupName="clientMetadata" fxLayout="column" fxLayout.gt-xs="row wrap">
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Allowed Grants</mat-label>
+            <mat-select formControlName="grant_types" multiple>
+              <mat-option *ngFor="let grant of discovery.grant_types_supported" [value]="grant">{{grant}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Allowed Response Types</mat-label>
+            <mat-select formControlName="response_types" multiple>
+              <mat-option *ngFor="let rType of discovery.response_types_supported"
+                          [value]="rType">{{rType}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <div fxLayout="row">
+              <mat-label fxFlex="95">Registered Redirect URIs</mat-label>
+              <button (click)="addControl(redirectUris)" fxFlex="5" mat-icon-button matSuffix>
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            <div *ngFor="let fc of redirectUris.controls; index as i" fxLayout="row">
+              <input [formControl]="fc" fxFlex="95" matInput type="url" class="app-border-1">
+              <button (click)="deleteControl(redirectUris, i)" fxFlex="5" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <div fxLayout="row">
+              <mat-label fxFlex="95">Registered Request URIs</mat-label>
+              <button (click)="addControl(requestUris)" fxFlex="5" mat-icon-button matSuffix>
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            <div *ngFor="let fc of requestUris.controls; index as i" fxLayout="row">
+              <input [formControl]="fc" fxFlex="95" matInput type="url">
+              <button (click)="deleteControl(requestUris, i)" fxFlex="5" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Id Token Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div formGroupName="clientMetadata" fxLayout="column" fxLayout.gt-xs="row wrap">
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Id Token Signing Algorithm</mat-label>
+            <mat-select formControlName="id_token_signed_response_alg">
+              <mat-option *ngFor="let algo of discovery.id_token_signing_alg_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Id Token Encryption Algorithm</mat-label>
+            <mat-select formControlName="id_token_encrypted_response_alg">
+              <mat-option [value]="null">Encryption Disabled</mat-option>
+              <mat-option *ngFor="let algo of discovery.id_token_encryption_alg_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Id Token Encryption Enc</mat-label>
+            <mat-select formControlName="id_token_encrypted_response_enc">
+              <mat-option [value]="null">Encryption Disabled</mat-option>
+              <mat-option *ngFor="let algo of discovery.id_token_encryption_enc_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            User Info Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div formGroupName="clientMetadata" fxLayout="column" fxLayout.gt-xs="row wrap">
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>User Info Signing Algorithm</mat-label>
+            <mat-select formControlName="userinfo_signed_response_alg">
+              <mat-option [value]="null">Signing Disabled</mat-option>
+              <mat-option *ngFor="let algo of discovery.userinfo_signing_alg_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>User Info Encryption Algorithm</mat-label>
+            <mat-select formControlName="userinfo_encrypted_response_alg">
+              <mat-option [value]="null">Encryption Disabled</mat-option>
+              <mat-option *ngFor="let algo of discovery.userinfo_encryption_alg_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>User Info Encryption Enc</mat-label>
+            <mat-select formControlName="userinfo_encrypted_response_enc">
+              <mat-option [value]="null">Encryption Disabled</mat-option>
+              <mat-option *ngFor="let algo of discovery.userinfo_encryption_enc_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Request Object Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div formGroupName="clientMetadata" fxLayout="column" fxLayout.gt-xs="row wrap">
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Request Object Signing Algorithm</mat-label>
+            <mat-select formControlName="request_object_signing_alg">
+              <mat-option [value]="null">Signing Disabled</mat-option>
+              <mat-option *ngFor="let algo of discovery.request_object_signing_alg_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Request Object Encryption Algorithm</mat-label>
+            <mat-select formControlName="request_object_encryption_alg">
+              <mat-option [value]="null">Encryption Disabled</mat-option>
+              <mat-option *ngFor="let algo of discovery.request_object_encryption_alg_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Request Object Encryption Enc</mat-label>
+            <mat-select formControlName="request_object_encryption_enc">
+              <mat-option [value]="null">Encryption Disabled</mat-option>
+              <mat-option *ngFor="let algo of discovery.request_object_encryption_enc_values_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Endpoint Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div formGroupName="clientMetadata" fxLayout="column" fxLayout.gt-xs="row wrap">
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Token Endpoint Auth Method</mat-label>
+            <mat-select formControlName="token_endpoint_auth_method">
+              <mat-option *ngFor="let algo of discovery.token_endpoint_auth_methods_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Token Endpoint Signing Algorithm</mat-label>
+            <mat-select formControlName="token_endpoint_auth_signing_alg">
+              <mat-option *ngFor="let algo of discovery.token_endpoint_auth_signing_alg_values_supported"
+                          [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!--<mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Introspection Endpoint Auth Method</mat-label>
+            <mat-select formControlName="introspection_endpoint_auth_method">
+              <mat-option *ngFor="let algo of discovery.introspection_endpoint_auth_methods_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Introspection Endpoint Signing Algorithm</mat-label>
+            <mat-select formControlName="introspection_endpoint_auth_signing_alg">
+              <mat-option *ngFor="let algo of discovery.introspection_endpoint_auth_signing_alg_values_supported"
+                          [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Revocation Endpoint Auth Method</mat-label>
+            <mat-select formControlName="revocation_endpoint_auth_method">
+              <mat-option *ngFor="let algo of discovery.revocation_endpoint_auth_methods_supported" [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100" fxFlex.gt-md="32" fxFlex.gt-xs="49">
+            <mat-label>Revocation Endpoint Signing Algorithm</mat-label>
+            <mat-select formControlName="revocation_endpoint_auth_signing_alg">
+              <mat-option *ngFor="let algo of discovery.revocation_endpoint_auth_signing_alg_values_supported"
+                          [value]="algo">
+                {{algo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>-->
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Key Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Other Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>
