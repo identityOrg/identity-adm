@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {CreateClientComponent} from './create-client/create-client.component';
 import {ClientService} from '../../service/client.service';
 import {Router} from '@angular/router';
+import {ConfirmDialogComponent} from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-client',
@@ -46,5 +47,43 @@ export class ClientComponent implements OnInit {
           });
       }
     });
+  }
+
+  lockClient() {
+    this.matDialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Please Confirm',
+        confirmation: 'Do you want to lock the client ' + this.activeClient.clientMetadata.client_name + '?'
+      }
+    })
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.clientService.lock(this.activeClient.clientId)
+            .subscribe(data => {
+              this.activeClient = data;
+            });
+        }
+      });
+    return false;
+  }
+
+  enableClient() {
+    this.matDialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Please Confirm',
+        confirmation: 'Do you want to enable the client ' + this.activeClient.clientMetadata.client_name + '?'
+      }
+    })
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.clientService.enable(this.activeClient.clientId)
+            .subscribe(data => {
+              this.activeClient = data;
+            });
+        }
+      });
+    return false;
   }
 }

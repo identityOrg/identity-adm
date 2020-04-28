@@ -79,7 +79,7 @@
               </button>
             </div>
             <div *ngFor="let fc of redirectUris.controls; index as i" fxLayout="row">
-              <input [formControl]="fc" fxFlex="95" matInput type="url" class="app-border-1">
+              <input [formControl]="fc" class="app-border-1" fxFlex="95" matInput type="url">
               <button (click)="deleteControl(redirectUris, i)" fxFlex="5" mat-icon-button>
                 <mat-icon>delete</mat-icon>
               </button>
@@ -293,4 +293,3 @@
     </button>
   </mat-card-actions>
 </mat-card>
-<pre>{{clientForm.value|json}}</pre>

@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Client} from '../../../model/client';
 import {ClientService} from '../../../service/client.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ConfirmDialogComponent} from '../../../confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {DiscoveryDocument} from '../../../model/discovery-document';
@@ -64,49 +63,7 @@ export class EditClientComponent implements OnInit {
     return false;
   }
 
-  lockClient(): boolean {
-    this.matDialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'Please Confirm',
-        confirmation: 'Do you want to lock the client ' + this.client.clientMetadata.client_name + '?'
-      }
-    })
-      .afterClosed()
-      .subscribe(result => {
-        if (result) {
-          this.clientService.lock(this.client.clientId)
-            .subscribe(data => {
-              this.setClientData(data);
-            });
-        }
-      });
-    return false;
-  }
-
-  enableClient(): boolean {
-    this.matDialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'Please Confirm',
-        confirmation: 'Do you want to enable the client ' + this.client.clientMetadata.client_name + '?'
-      }
-    })
-      .afterClosed()
-      .subscribe(result => {
-        if (result) {
-          this.clientService.enable(this.client.clientId)
-            .subscribe(data => {
-              this.setClientData(data);
-            });
-        }
-      });
-    return false;
-  }
-
   resetUser() {
-  }
-
-  getGormGroup(group: string): FormGroup {
-    return this.clientForm.get(group) as FormGroup;
   }
 
   addControl(formArray: FormArray) {

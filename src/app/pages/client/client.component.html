@@ -1,13 +1,22 @@
 <mat-toolbar>
   <span>Client Management</span>
   <span fxFlex="1 1 auto"></span>
-  <button *ngIf="activeClient" [routerLink]="['/client', 'edit', activeClient.clientId]" color="primary" mat-icon-button>
+  <button (click)="lockClient()"
+          *ngIf="activeClient && activeClient.status === 'ACTIVE'" color="warn" mat-icon-button>
+    <mat-icon>lock</mat-icon>
+  </button>
+  <button (click)="enableClient()"
+          *ngIf="activeClient && activeClient.status === 'LOCKED'" color="primary" mat-icon-button>
+    <mat-icon>lock_open</mat-icon>
+  </button>
+  <button *ngIf="activeClient" [routerLink]="['/client', 'edit', activeClient.clientId]" color="primary"
+          mat-icon-button>
     <mat-icon aria-label="Edit client">edit</mat-icon>
   </button>
   <button color="primary" mat-icon-button routerLink="/client">
     <mat-icon aria-label="List client">format_list_bulleted</mat-icon>
   </button>
-  <button color="warn" mat-icon-button (click)="createClient()">
+  <button (click)="createClient()" color="warn" mat-icon-button>
     <mat-icon aria-label="Create new client">add_circle</mat-icon>
   </button>
 </mat-toolbar>
